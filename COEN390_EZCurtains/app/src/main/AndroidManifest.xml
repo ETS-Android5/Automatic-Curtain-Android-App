@@ -11,6 +11,7 @@
         android:theme="@style/Theme.COEN390_EZCurtains" >
         <activity
             android:name=".ScheduleActivity"
+            android:parentActivityName=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".HomeActivity"

@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -19,7 +18,7 @@
             android:layout_marginTop="17dp"
             android:text="Device Name"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/btn_open_close"
@@ -29,6 +28,19 @@
             android:layout_marginTop="-33dp"
             app:cornerRadius="12dp"
             app:icon="@drawable/ic_open_arrows" />
+
+        <TextView
+            android:id="@+id/text_add_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/text_device_name"
+            android:textSize="18sp"
+            android:text="add schedule"
+            android:drawableLeft="@drawable/ic_add"
+            android:drawablePadding="5dp"/>
+
+
 
 
     </LinearLayout>
