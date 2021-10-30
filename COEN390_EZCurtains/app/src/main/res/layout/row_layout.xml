@@ -24,9 +24,12 @@
             android:id="@+id/btn_open_close_all"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-43dp"
             android:layout_marginStart="247dp"
-            android:text="open all"/>
+            android:layout_marginTop="-43dp"
+            android:backgroundTint="@color/pomegranate"
+            android:text="open all"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/teal_200" />
 
 
     </LinearLayout>
