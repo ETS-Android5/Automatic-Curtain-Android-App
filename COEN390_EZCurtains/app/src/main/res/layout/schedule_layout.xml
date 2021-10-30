@@ -13,32 +13,36 @@
 
     <ca.antonious.materialdaypicker.MaterialDayPicker
         android:id="@+id/day_picker"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="30dp"
+        android:scaleY="0.9"
+        android:scaleX="0.9"/>
 
     <TimePicker
         android:id="@+id/time_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="80dp"
         android:timePickerMode="spinner"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="100dp"/>
+        android:scaleX="1.2"
+        android:scaleY="1.2"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="290dp"
         android:text="Hour"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="220dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="290dp"
         android:text="Minutes"/>
 
 
