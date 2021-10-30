@@ -1,9 +1,9 @@
 package team_10.example.coen390_ezcurtains;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ScheduleActivity extends AppCompatActivity {
     protected TimePicker time_picker;
