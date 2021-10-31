@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     tools:context=".ScheduleActivity">
 
     <include
@@ -17,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="450dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="14dp"
         android:scaleX="0.9"
         android:scaleY="0.9"/>
 
@@ -25,25 +24,25 @@
         android:id="@+id/set_open_time"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="150dp"
-        android:layout_marginStart="40dp"
-        android:text="Set open time"
-        app:cornerRadius="0dp"
-        android:elevation="4dp"
         android:backgroundTint="@color/white"
-        android:textColor="@color/black"/>
+        android:elevation="4dp"
+        android:text="Set open time"
+        android:textColor="@color/black"
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/set_close_time"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="211dp"
+        android:layout_marginStart="206dp"
         android:layout_marginTop="150dp"
-        android:text="Set close time"
-        app:cornerRadius="0dp"
         android:backgroundTint="@color/white"
         android:elevation="4dp"
-        android:textColor="@color/black"/>
+        android:text="Set close time"
+        android:textColor="@color/black"
+        app:cornerRadius="0dp" />
 
     <TextView
         android:id="@+id/text_open_time"
@@ -52,7 +51,8 @@
         android:layout_below="@+id/set_open_time"
         android:layout_marginStart="75dp"
         android:text="12 : 00 AM"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/text_close_time"
@@ -61,7 +61,8 @@
         android:layout_marginStart="248dp"
         android:textSize="20sp"
         android:text="12 : 00 AM"
-        android:layout_below="@+id/set_open_time"/>
+        android:layout_below="@+id/set_open_time"
+        android:visibility="invisible"/>
 
 
 
