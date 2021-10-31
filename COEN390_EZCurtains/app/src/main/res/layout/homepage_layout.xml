@@ -33,6 +33,7 @@
         android:text="add device" />
 
     <ExpandableListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="584dp"
         android:layout_above="@+id/btn_add_room"

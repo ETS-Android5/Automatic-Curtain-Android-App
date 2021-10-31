@@ -17,29 +17,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="450dp"
-        android:layout_marginEnd="15dp" />
+        android:layout_marginEnd="15dp"
+        android:scaleX="0.9"
+        android:scaleY="0.9"/>
 
-    <TimePicker
-        android:id="@+id/time_picker"
+    <Button
+        android:id="@+id/open_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="100dp"
-        android:timePickerMode="spinner" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:text="Set open time" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="300dp"
-        android:text="Hour" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="220dp"
-        android:text="Minutes"/>
 
 
 
