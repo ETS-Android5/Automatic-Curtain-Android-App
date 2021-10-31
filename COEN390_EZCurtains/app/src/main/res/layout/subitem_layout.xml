@@ -38,7 +38,6 @@
             android:layout_below="@+id/text_device_name"
             android:textSize="18sp"
             android:text="add schedule"
-            android:drawableLeft="@drawable/ic_add"
             android:drawablePadding="5dp"/>
 
 
