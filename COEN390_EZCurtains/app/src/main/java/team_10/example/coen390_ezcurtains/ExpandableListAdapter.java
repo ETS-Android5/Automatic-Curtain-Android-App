@@ -1,12 +1,16 @@
 package team_10.example.coen390_ezcurtains;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
@@ -80,12 +84,22 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_child = (TextView) view.findViewById(R.id.text_device_name);
+        TextView add_schedule = (TextView) view.findViewById(R.id.text_add_schedule);
         text_child.setText(childText);
+
+        add_schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ScheduleActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
+        return false;
     }
 }

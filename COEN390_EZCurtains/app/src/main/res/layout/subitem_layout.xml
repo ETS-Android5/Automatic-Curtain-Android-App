@@ -25,7 +25,7 @@
             android:layout_width="56dp"
             android:layout_height="48dp"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="-33dp"
+            android:layout_marginTop="-22dp"
             android:backgroundTint="@color/pomegranate"
             app:icon="@drawable/ic_open_arrows"
             android:focusable="false"/>
@@ -33,14 +33,15 @@
         <TextView
             android:id="@+id/text_add_schedule"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="-10dp"
+            android:layout_marginTop="-26dp"
             android:textSize="18sp"
             android:text="add schedule"
             android:drawableLeft="@drawable/ic_add"
             android:drawablePadding="5dp"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:clickable="true"/>
 
     </LinearLayout>
 
