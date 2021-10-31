@@ -92,6 +92,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context, ScheduleActivity.class);
                 view.getContext().startActivity(intent);
+                // Pass device schedule data if not null
             }
         });
 

@@ -58,14 +58,6 @@ public class HomeActivity extends AppCompatActivity {
                 addDevice();
             }
         });
-
-//        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-//            @Override
-//            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-//                return false;
-//            }
-//        });
-
     }
 
     // Add device
@@ -74,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // Load expandable list view
     private void loadList() {
+        // Temporary data to access schedule activity
         list_room_names.add("Living Room");
         List<String> living_room = new ArrayList<>();
         living_room.add("Left Window");

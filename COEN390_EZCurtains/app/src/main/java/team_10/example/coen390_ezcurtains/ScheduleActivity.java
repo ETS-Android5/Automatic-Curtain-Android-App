@@ -16,8 +16,8 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 public class ScheduleActivity extends AppCompatActivity {
-    protected Button openDialog;
-    protected TextView text_activity_name;
+    protected Button setOpenTime, setCloseTime;
+    protected TextView txt_openTime, txt_closeTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +28,23 @@ public class ScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Schedule");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        openDialog = findViewById(R.id.open_dialog);
-        openDialog.setOnClickListener(new View.OnClickListener() {
+        setOpenTime = findViewById(R.id.set_open_time);
+        setCloseTime = findViewById(R.id.set_close_time);
+        txt_closeTime = findViewById(R.id.text_close_time);
+        txt_openTime = findViewById(R.id.text_open_time);
+
+        setOpenTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                MaterialTimePicker timePickerOpen = new MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
+                        .setTitleText("Set Open Time")
                         .setHour(12)
                         .setMinute(10)
                         .build();
-                timePicker.show(getSupportFragmentManager(), "fragment_tag");
+                timePickerOpen.show(getSupportFragmentManager(), "fragment_tag");
+//                txt_openTime.setText(timePickerOpen.getHour() + " : " + timePickerOpen.getMinute());
+
             }
         });
 

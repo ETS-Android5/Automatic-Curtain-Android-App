@@ -22,13 +22,46 @@
         android:scaleY="0.9"/>
 
     <Button
-        android:id="@+id/open_dialog"
+        android:id="@+id/set_open_time"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="40dp"
+        android:text="Set open time"
+        app:cornerRadius="0dp"
+        android:elevation="4dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/set_close_time"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="211dp"
+        android:layout_marginTop="150dp"
+        android:text="Set close time"
+        app:cornerRadius="0dp"
+        android:backgroundTint="@color/white"
+        android:elevation="4dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_open_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:text="Set open time" />
+        android:layout_below="@+id/set_open_time"
+        android:layout_marginStart="75dp"
+        android:text="12 : 00 AM"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_close_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="248dp"
+        android:textSize="20sp"
+        android:text="12 : 00 AM"
+        android:layout_below="@+id/set_open_time"/>
 
 
 
