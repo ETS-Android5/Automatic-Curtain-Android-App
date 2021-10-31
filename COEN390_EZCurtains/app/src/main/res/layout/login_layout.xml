@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E2F8E8D7" >
+    android:background="#E2F8D3AC" >
 
     <LinearLayout
         android:layout_marginTop="90dp"
@@ -49,7 +49,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:hint="User Name"
-                android:textColorHint="#FFFFFF"
+                android:textColorHint="@color/pomegranate"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -58,7 +58,7 @@
                     android:layout_height="match_parent"
                     android:inputType="text"
                     android:textAlignment="center"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="@color/pomegranate" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +70,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:hint="Password"
-                android:textColorHint="#FFFFFF"
+                android:textColorHint="@color/pomegranate"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,9 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-
                     android:textAlignment="center"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="@color/pomegranate" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -92,8 +91,8 @@
 
                 <Button
                     android:id="@+id/login_button"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="268dp"
+                    android:layout_height="74dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/pomegranate"
                     android:text="Login" />

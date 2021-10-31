@@ -28,13 +28,15 @@ public class Login_Activity extends AppCompatActivity {
     final String db_name = "Class02DB.db";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
 
 
         // Login process
-        login_button.setOnClickListener(new View.OnClickListener() {
+        login_button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 String user = txt_username.getText().toString();
