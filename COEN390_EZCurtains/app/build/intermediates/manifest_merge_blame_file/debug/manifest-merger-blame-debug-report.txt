@@ -1,0 +1,67 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="team_10.example.coen390_ezcurtains"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="27"
+8-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:5:5-29:19
+12        android:allowBackup="true"
+12-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.5.0] C:\Users\Nicolas\.gradle\caches\transforms-3\255d63c0f9f8f5d12ab3191ffb377750\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:icon="@mipmap/ic_launcher"
+16-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:7:9-43
+17        android:label="@string/app_name"
+17-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:8:9-41
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:9:9-54
+19        android:supportsRtl="true"
+19-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:10:9-35
+20        android:testOnly="true"
+21        android:theme="@style/Theme.COEN390_EZCurtains" >
+21-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:11:9-56
+22        <activity
+22-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:12:9-15:39
+23            android:name="team_10.example.coen390_ezcurtains.HomeActivity"
+23-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:13:13-41
+24            android:exported="true"
+24-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:15:13-36
+25            android:parentActivityName="team_10.example.coen390_ezcurtains.Login_Activity" />
+25-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:14:13-57
+26        <activity
+26-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:16:9-19:58
+27            android:name="team_10.example.coen390_ezcurtains.ScheduleActivity"
+27-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:17:13-45
+28            android:exported="true"
+28-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:18:13-36
+29            android:parentActivityName="team_10.example.coen390_ezcurtains.HomeActivity" />
+29-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:19:13-55
+30        <activity
+30-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:20:9-28:20
+31            android:name="team_10.example.coen390_ezcurtains.Login_Activity"
+31-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:21:13-43
+32            android:exported="true" >
+32-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:22:13-36
+33            <intent-filter>
+33-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:23:13-27:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:24:17-69
+34-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:24:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:26:17-77
+36-->C:\Users\Nicolas\AndroidStudioProjects\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:26:27-74
+37            </intent-filter>
+38        </activity>
+39    </application>
+40
+41</manifest>
