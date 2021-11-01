@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "team_10.example.coen390_ezcurtains"
-        minSdk 27
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
