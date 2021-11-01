@@ -10,14 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COEN390_EZCurtains">
         <activity
-            android:name=".Login_Activity"
+            android:name=".HomeActivity"
+            android:parentActivityName=".Login_Activity"
             android:exported="true" />
         <activity
             android:name=".ScheduleActivity"
             android:exported="true"
             android:parentActivityName=".HomeActivity" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Login_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

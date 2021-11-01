@@ -3,10 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/drawable-anydpi/ic_checkmark.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/drawable-mdpi/rectangle.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/homepage_layout.xml" value="0.25905797101449274" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/login_layout.xml" value="0.25" />
         <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/row_layout.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/schedule_layout.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/subitem_layout.xml" value="0.2313915857605178" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
       </map>
     </option>
   </component>
