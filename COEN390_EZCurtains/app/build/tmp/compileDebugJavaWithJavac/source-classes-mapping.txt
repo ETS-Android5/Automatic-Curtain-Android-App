@@ -6,8 +6,9 @@ team_10/example/coen390_ezcurtains/HomeActivity.java
  team_10.example.coen390_ezcurtains.HomeActivity
  team_10.example.coen390_ezcurtains.HomeActivity$1
  team_10.example.coen390_ezcurtains.HomeActivity$2
-team_10/example/coen390_ezcurtains/InsertDeviceFragment.java
- team_10.example.coen390_ezcurtains.InsertDeviceFragment
+team_10/example/coen390_ezcurtains/Login_Activity.java
+ team_10.example.coen390_ezcurtains.Login_Activity
+ team_10.example.coen390_ezcurtains.Login_Activity$1
 team_10/example/coen390_ezcurtains/Controllers/SqlLiteUserAdapter.java
  team_10.example.coen390_ezcurtains.Controllers.SqlLiteUserAdapter
 team_10/example/coen390_ezcurtains/ScheduleActivity.java
@@ -19,6 +20,5 @@ team_10/example/coen390_ezcurtains/ScheduleActivity.java
 team_10/example/coen390_ezcurtains/ExpandableListAdapter.java
  team_10.example.coen390_ezcurtains.ExpandableListAdapter
  team_10.example.coen390_ezcurtains.ExpandableListAdapter$1
-team_10/example/coen390_ezcurtains/Login_Activity.java
- team_10.example.coen390_ezcurtains.Login_Activity
- team_10.example.coen390_ezcurtains.Login_Activity$1
+team_10/example/coen390_ezcurtains/InsertDeviceFragment.java
+ team_10.example.coen390_ezcurtains.InsertDeviceFragment

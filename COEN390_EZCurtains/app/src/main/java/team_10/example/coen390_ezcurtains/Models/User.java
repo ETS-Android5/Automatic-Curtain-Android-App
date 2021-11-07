@@ -1,9 +1,9 @@
 package team_10.example.coen390_ezcurtains.Models;
 
 public class User {
-    int user_id;
-    String username;
-    String password;
+    private int user_id;
+    private String username;
+    private String password;
 
     public int getUser_id() {
         return user_id;
