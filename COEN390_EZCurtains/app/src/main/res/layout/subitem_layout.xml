@@ -17,7 +17,6 @@
             android:layout_marginStart="50dp"
             android:layout_gravity="center_vertical"
             android:text="Device Name"
-            android:textColor="#000"
             android:textSize="20sp"/>
 
         <Button
@@ -40,8 +39,7 @@
             android:text="add schedule"
             android:drawableLeft="@drawable/ic_add"
             android:drawablePadding="5dp"
-            android:gravity="center_vertical"
-            android:clickable="true"/>
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 

@@ -6,7 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import team_10.example.coen390_ezcurtains.DBConfig;
 import team_10.example.coen390_ezcurtains.Models.Device;
@@ -26,8 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase dB) {
         // Create user table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_USERS+"( "
-                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-                +DBConfig.COLUMN_USERS_USERNAME+" TEXT NOT NULL,"
+                +DBConfig.COLUMN_USERS_USERNAME+" TEXT PRIMARY KEY NOT NULL,"
                 +DBConfig.COLUMN_USERS_PASSWORD+" TEXT NOT NULL "+")");
 
         // Create device table
@@ -47,6 +51,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_OPEN+" TEXT NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_CLOSE+" TEXT NOT NULL "+")");
+
+//        User user = new User();
+//        user.setUserName("Zeineb");
+//        user.setPassword("Team10!");
+//        insertUser(user);
     }
 
     @Override
@@ -79,8 +88,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_DEVICES_NAME, device.getDeviceName());
         contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
         contentValues.put(DBConfig.COLUMN_DEVICES_SCHEDULE, device.getScheduleID());
-        // Insert row int user table
-        id = dB.insert(DBConfig.TABLE_USERS, null, contentValues);
+        // Insert row into user table
+        id = dB.insert(DBConfig.TABLE_DEVICES, null, contentValues);
         dB.close();
         return id;
     }
@@ -90,8 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase dB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBConfig.COLUMN_ROOMS_NAME, room.getRoomName());
-        // Insert row int user table
-        id = dB.insert(DBConfig.TABLE_USERS, null, contentValues);
+        // Insert row into room table
+        id = dB.insert(DBConfig.TABLE_ROOMS, null, contentValues);
         dB.close();
         return id;
     }
@@ -130,5 +139,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return schedule;
     }
 
+    // Get hashmap with room-device pairs
+    public HashMap<String, List<Device>> getDevices() {
+        HashMap<String, List<Device>> childrenList = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_DEVICES;
+        Cursor cursor = db.rawQuery(query,null);
 
+        if (cursor.moveToFirst()) {
+            do {
+                Device device = new Device();
+                device.setDeviceName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_NAME))));
+                device.setRoomName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_ROOM))));
+                device.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_SCHEDULE))));
+
+                // Check if key is present, if not add key with new list
+                if (!(childrenList.containsKey(device.getRoomName()))) {
+                    childrenList.put(device.getRoomName(), new ArrayList<Device>());
+                }
+                childrenList.get(device.getRoomName()).add(device);
+
+            }while (cursor.moveToNext());
+        }
+        return childrenList;
+    }
+
+    // Get rooms
+    public List<Room> getRooms() {
+        List<Room> roomList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_ROOMS;
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Room room = new Room();
+                room.setRoomName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_ROOMS_NAME))));
+                roomList.add(room);
+            }while (cursor.moveToNext());
+        }
+        return roomList;
+    }
+
+    // Get user
 }

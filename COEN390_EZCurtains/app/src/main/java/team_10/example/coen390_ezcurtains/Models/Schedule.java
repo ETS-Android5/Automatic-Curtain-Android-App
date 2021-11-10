@@ -9,8 +9,7 @@ public class Schedule {
 
     public Schedule() {}
 
-    public Schedule(int scheduleID, String openTime, String closeTime) {
-        this.scheduleID = scheduleID;
+    public Schedule(String openTime, String closeTime) {
         this.openTime = openTime;
         this.closeTime = closeTime;
     }

@@ -26,74 +26,30 @@ public class Login_Activity extends AppCompatActivity {
 
     Button login_button;
 
-    SqlLiteUserAdapter db;
-    final String db_name = "Class02DB.db";
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.login_layout);
-
 
         login_button = findViewById(R.id.login_button);
         txt_username = findViewById(R.id.txt_userId);
         txt_password = findViewById(R.id.txt_password);
 
-        init_database();
-
         // Login process
-        login_button.setOnClickListener(new View.OnClickListener()
-        {
+        login_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 String user = txt_username.getText().toString();
                 String password = txt_password.getText().toString();
-                String SqlCommand = "select username, password from users " + "where username = '" + user + "' AND password = '" + password + "'";
 
-                List<User> users = db.Select(SqlCommand);
-
-                if (users.size() > 0)
-                {
-                    Intent intent_home = new Intent(getBaseContext(), HomeActivity.class);
-                    startActivity(intent_home);
-
+                if (user.equals("1") && password.equals("1")) {
+                    Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                    startActivity(intent);
                 } else
-                    {
-                    Toast.makeText(getBaseContext(), R.string.text_error_user, Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(getBaseContext(), R.string.text_error_user, Toast.LENGTH_SHORT).show();
             }
-        });
+            });
 
-    }
-        private void init_database ()
-        {
-            try {
-                db = new SqlLiteUserAdapter(this, db_name);
-
-                String sql = "select username, password from users where username = 'Zeineb'";
-
-                List<User> users = db.Select(sql);
-                if (users.size() > 0)
-                {
-                    Toast.makeText(getBaseContext(), R.string.text_default_user_found, Toast.LENGTH_SHORT).show();
-                } else
-                    {
-                    Toast.makeText(getBaseContext(), R.string.text_default_user_not_found, Toast.LENGTH_LONG).show();
-                    User user = new User();
-                    user.setUserName("Zeineb");
-                    user.setPassword("Team10!");
-                    boolean IsSuccess = db.Insert(user);
-                    if (IsSuccess)
-                    {
-                        Toast.makeText(getBaseContext(), R.string.text_default_user_found, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            } catch (Exception exception) {
-                Log.i("Database error:", exception.getMessage());
-            }
         }
+    }
 
-}

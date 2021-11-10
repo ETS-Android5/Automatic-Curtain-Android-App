@@ -1957,8 +1957,10 @@ id bounceEnd
 id bounceStart
 id btn_add_device
 id btn_add_room
+id btn_cancel
 id btn_open_close
 id btn_open_close_all
+id btn_save
 id buttonPanel
 id cache_measures
 id cancel_action
@@ -2040,6 +2042,8 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id enter_deviceName
+id enter_roomName
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2440,6 +2444,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_insert_device
 layout homepage_layout
 layout login_layout
 layout material_chip_input_combo

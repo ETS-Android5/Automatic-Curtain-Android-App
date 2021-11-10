@@ -1,24 +1,16 @@
 package team_10.example.coen390_ezcurtains.Models;
 
 public class Device {
-    private int dID;
     private int scheduleID;
     private String deviceName;
     private String roomName;
 
-    public Device(int dID, int scheduleID, String deviceName, String roomName) {
-        this.dID = dID;
+    public Device() {}
+
+    public Device(int scheduleID, String deviceName, String roomName) {
         this.scheduleID = scheduleID;
         this.deviceName = deviceName;
         this.roomName = roomName;
-    }
-
-    public int getdID() {
-        return dID;
-    }
-
-    public void setdID(int dID) {
-        this.dID = dID;
     }
 
     public int getScheduleID() {

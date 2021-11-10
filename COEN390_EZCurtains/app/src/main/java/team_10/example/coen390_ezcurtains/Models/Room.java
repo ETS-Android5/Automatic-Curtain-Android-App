@@ -4,8 +4,9 @@ public class Room {
     private int rID;
     private String roomName;
 
-    public Room(int rID, String roomName) {
-        this.rID = rID;
+    public Room() {}
+
+    public Room(String roomName) {
         this.roomName = roomName;
     }
 

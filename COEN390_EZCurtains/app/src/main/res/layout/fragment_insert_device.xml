@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tool:context=".InsertDeviceFragment">
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/enter_deviceName"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:hint="Enter Device Name"
+            android:layout_marginTop="20dp"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-' "/>
+
+        <EditText
+            android:id="@+id/enter_roomName"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enter_deviceName"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:hint="Enter Room Name"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-' "/>/>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="124dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="245dp"
+            android:backgroundTint="@color/white"
+            android:elevation="4dp"
+            android:text="SAVE"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="124dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="126dp"
+            android:layout_marginTop="245dp"
+            android:backgroundTint="@color/white"
+            android:elevation="4dp"
+            android:text="CANCEL"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>
