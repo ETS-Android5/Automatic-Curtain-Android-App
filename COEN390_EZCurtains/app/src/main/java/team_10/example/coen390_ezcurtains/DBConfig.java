@@ -11,9 +11,15 @@ public class DBConfig {
     public static final String COLUMN_USERS_PASSWORD = "Password";
     public static final String COLUMN_DEVICES_NAME = "DeviceName";
     public static final String COLUMN_DEVICES_ROOM = "Room";
-    public static final String COLUMN_DEVICES_SCHEDULE = "ScheduleID";
     public static final String COLUMN_ROOMS_NAME = "RoomName";
     public static final String COLUMN_SCHEDULES_OPEN = "OpenTime";
     public static final String COLUMN_SCHEDULES_CLOSE = "CloseTime";
-
+    public static final String COLUMN_SCHEDULES_MONDAY = "Monday";
+    public static final String COLUMN_SCHEDULES_TUESDAY = "Tuesday";
+    public static final String COLUMN_SCHEDULES_WEDNESDAY = "Wednesday";
+    public static final String COLUMN_SCHEDULES_THURSDAY = "Thursday";
+    public static final String COLUMN_SCHEDULES_FRIDAY = "Friday";
+    public static final String COLUMN_SCHEDULES_SATURDAY = "Saturday";
+    public static final String COLUMN_SCHEDULES_SUNDAY = "Sunday";
+    public static final String COLUMN_DEVICE_ID = "DeviceID";
 }

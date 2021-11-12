@@ -1,24 +1,17 @@
 package team_10.example.coen390_ezcurtains.Models;
 
+import java.util.List;
+
 public class Device {
-    private int scheduleID;
+    private int deviceID;
     private String deviceName;
     private String roomName;
 
     public Device() {}
 
-    public Device(int scheduleID, String deviceName, String roomName) {
-        this.scheduleID = scheduleID;
+    public Device(String deviceName, String roomName) {
         this.deviceName = deviceName;
         this.roomName = roomName;
-    }
-
-    public int getScheduleID() {
-        return scheduleID;
-    }
-
-    public void setScheduleID(int scheduleID) {
-        this.scheduleID = scheduleID;
     }
 
     public String getDeviceName() {
@@ -36,6 +29,10 @@ public class Device {
     public void setRoomName(String roomName) {
         this.roomName = roomName;
     }
+
+    public int getDeviceID() { return deviceID; }
+
+    public void setDeviceID(int deviceID) { this.deviceID = deviceID; }
 }
 
 

@@ -47,7 +47,7 @@ public class InsertDeviceFragment extends DialogFragment {
 
                 if (!(name.equals("") || room.equals(""))) {
                     // Save in db
-                    dbHelper.insertDevice(new Device(scheduleID, name, room));
+                    dbHelper.insertDevice(new Device(name, room));
                     dbHelper.insertRoom(new Room(room));
                     ((HomeActivity)getActivity()).loadList();
                     dismiss();

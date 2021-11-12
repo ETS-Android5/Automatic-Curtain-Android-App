@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -36,26 +35,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Create device table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_DEVICES+"( "
-                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY NOT NULL, "
                 +DBConfig.COLUMN_DEVICES_NAME+" TEXT NOT NULL, "
-                +DBConfig.COLUMN_DEVICES_ROOM+" TEXT NOT NULL, "
-                +DBConfig.COLUMN_DEVICES_SCHEDULE+" INTEGER "+")");
+                +DBConfig.COLUMN_DEVICES_ROOM+" TEXT NOT NULL "+")");
 
         // Create room table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_ROOMS+"( "
-                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-                +DBConfig.COLUMN_ROOMS_NAME+" TEXT NOT NULL "+")");
+                +DBConfig.COLUMN_ROOMS_NAME+" TEXT PRIMARY KEY NOT NULL "+")");
 
         // Create schedule table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SCHEDULES+"( "
-                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY NOT NULL, "
+                +DBConfig.COLUMN_DEVICE_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_OPEN+" TEXT NOT NULL, "
-                +DBConfig.COLUMN_SCHEDULES_CLOSE+" TEXT NOT NULL "+")");
-
-//        User user = new User();
-//        user.setUserName("Zeineb");
-//        user.setPassword("Team10!");
-//        insertUser(user);
+                +DBConfig.COLUMN_SCHEDULES_CLOSE+" TEXT NOT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_MONDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_TUESDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_WEDNESDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_THURSDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_FRIDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_SATURDAY+" INTEGER DEFAULT 0, "
+                +DBConfig.COLUMN_SCHEDULES_SUNDAY+" INTEGER DEFAULT 0 "+")");
     }
 
     @Override
@@ -87,7 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBConfig.COLUMN_DEVICES_NAME, device.getDeviceName());
         contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
-        contentValues.put(DBConfig.COLUMN_DEVICES_SCHEDULE, device.getScheduleID());
         // Insert row into user table
         id = dB.insert(DBConfig.TABLE_DEVICES, null, contentValues);
         dB.close();
@@ -96,12 +95,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertRoom(Room room) {
         long id = -1;
-        SQLiteDatabase dB = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBConfig.COLUMN_ROOMS_NAME, room.getRoomName());
         // Insert row into room table
-        id = dB.insert(DBConfig.TABLE_ROOMS, null, contentValues);
-        dB.close();
+        id = db.insert(DBConfig.TABLE_ROOMS, null, contentValues);
+        db.close();
+        return id;
+    }
+
+    public long insertSchedule(Schedule schedule) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_DEVICE_ID, schedule.getDeviceID());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_OPEN, schedule.getOpenTime());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_CLOSE, schedule.getCloseTime());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_MONDAY, schedule.getDaysOfTheWeek().get(0));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_TUESDAY, schedule.getDaysOfTheWeek().get(1));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_WEDNESDAY, schedule.getDaysOfTheWeek().get(2));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_THURSDAY, schedule.getDaysOfTheWeek().get(3));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_FRIDAY, schedule.getDaysOfTheWeek().get(4));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_SATURDAY, schedule.getDaysOfTheWeek().get(5));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_SUNDAY, schedule.getDaysOfTheWeek().get(6));
+        // Insert row into schedule table
+        id = db.insert(DBConfig.TABLE_SCHEDULES, null , contentValues);
+        db.close();
         return id;
     }
 
@@ -119,24 +138,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Get schedule for given device
-    public Schedule getSchedule(int id) {
-        Schedule schedule = new Schedule();
+    public List<Schedule> getSchedule(int id) {
+        List<Schedule> scheduleList = new ArrayList<>();
+        List<Integer> daysList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT "+ DBConfig.COLUMN_SCHEDULES_OPEN
-                +", "+DBConfig.COLUMN_SCHEDULES_CLOSE
-                +" FROM "+DBConfig.TABLE_SCHEDULES
-                +", "+DBConfig.TABLE_DEVICES
-                +" WHERE "+ DBConfig.TABLE_DEVICES+"."+DBConfig.COLUMN_DEVICES_SCHEDULE+" = "+DBConfig.TABLE_SCHEDULES+"."+DBConfig.COLUMN_ID
-                +" AND "+DBConfig.TABLE_DEVICES+"."+DBConfig.COLUMN_ID+" = "+id;
+        String query = "SELECT * FROM "+DBConfig.TABLE_SCHEDULES+" WHERE "+DBConfig.COLUMN_DEVICE_ID+" = "+id;
         Cursor cursor = db.rawQuery(query, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        if (cursor.moveToFirst()) {
+            do {
+                Schedule schedule = new Schedule();
+                schedule.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ID))));
+                schedule.setDeviceID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DEVICE_ID))));
+                schedule.setOpenTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_OPEN))));
+                schedule.setCloseTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_CLOSE))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_MONDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_TUESDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_WEDNESDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_THURSDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_FRIDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_SATURDAY))));
+                daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_SUNDAY))));
+                schedule.setDaysOfTheWeek(daysList);
 
-        schedule.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ID))));
-        schedule.setOpenTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_OPEN))));
-        schedule.setCloseTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_CLOSE))));
-
-        return schedule;
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return scheduleList;
     }
 
     // Get hashmap with room-device pairs
@@ -149,9 +177,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Device device = new Device();
+                device.setDeviceID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ID))));
                 device.setDeviceName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_NAME))));
                 device.setRoomName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_ROOM))));
-                device.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DEVICES_SCHEDULE))));
 
                 // Check if key is present, if not add key with new list
                 if (!(childrenList.containsKey(device.getRoomName()))) {
@@ -161,6 +189,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             }while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return childrenList;
     }
 
@@ -176,10 +206,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Room room = new Room();
                 room.setRoomName(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_ROOMS_NAME))));
                 roomList.add(room);
+
             }while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return roomList;
     }
 
-    // Get user
 }

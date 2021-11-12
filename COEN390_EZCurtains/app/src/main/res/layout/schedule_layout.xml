@@ -10,61 +10,9 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_layout"/>
 
-    <ca.antonious.materialdaypicker.MaterialDayPicker
-        android:id="@+id/day_picker"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="14dp"
-        android:scaleX="0.9"
-        android:scaleY="0.9"/>
-
-    <Button
-        android:id="@+id/set_open_time"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="150dp"
-        android:backgroundTint="@color/white"
-        android:elevation="4dp"
-        android:text="Set open time"
-        android:textColor="@color/black"
-        app:cornerRadius="0dp" />
-
-    <Button
-        android:id="@+id/set_close_time"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="206dp"
-        android:layout_marginTop="150dp"
-        android:backgroundTint="@color/white"
-        android:elevation="4dp"
-        android:text="Set close time"
-        android:textColor="@color/black"
-        app:cornerRadius="0dp" />
-
-    <TextView
-        android:id="@+id/text_open_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/set_open_time"
-        android:layout_marginStart="75dp"
-        android:text="12 : 00 AM"
-        android:textSize="20sp"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/text_close_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
-        android:textSize="20sp"
-        android:text="12 : 00 AM"
-        android:layout_below="@+id/set_open_time"
-        android:visibility="invisible"/>
-
-
-
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"/>
 
 </RelativeLayout>

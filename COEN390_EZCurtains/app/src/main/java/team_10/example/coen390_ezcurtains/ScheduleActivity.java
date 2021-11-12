@@ -1,5 +1,6 @@
 package team_10.example.coen390_ezcurtains;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,15 +16,28 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import team_10.example.coen390_ezcurtains.Models.Device;
+import team_10.example.coen390_ezcurtains.Models.Schedule;
+
 public class ScheduleActivity extends AppCompatActivity {
     protected Button setOpenTime, setCloseTime;
     protected TextView txt_openTime, txt_closeTime;
     protected MaterialTimePicker timePickerOpen, timePickerClose;
+    protected List<Schedule> scheduleList;
+    protected Device device;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_layout);
+        // Retrieve device and schedule list from home activity
+        Intent i = getIntent();
+        device = (Device) i.getSerializableExtra("List");
+        scheduleList = (ArrayList<Schedule>) i.getSerializableExtra("Device");
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Schedule");

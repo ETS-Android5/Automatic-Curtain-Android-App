@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,13 +21,15 @@ import java.util.List;
 import team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper;
 import team_10.example.coen390_ezcurtains.Models.Device;
 import team_10.example.coen390_ezcurtains.Models.Room;
+import team_10.example.coen390_ezcurtains.Models.Schedule;
+
 
 public class HomeActivity extends AppCompatActivity {
     protected ExpandableListView expandableListView;
     protected ExpandableListAdapter adapter;
     protected List<Room> list_room_names;
     protected HashMap<String, List<Device>> list_devices;
-    protected Button btn_addRoom, btn_addDevice;
+    protected Button btn_addDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +44,25 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Devices");
 
         expandableListView = findViewById(R.id.list);
-        btn_addRoom = findViewById(R.id.btn_add_room);
         btn_addDevice = findViewById(R.id.btn_add_device);
         //loadList();
-
-        // is add room button really necessary?
-        btn_addRoom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // open add room dialog and save room name to list_room_names
-            }
-        });
 
         btn_addDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // open add device dialog and save device to list_devices
                 addDevice();
+            }
+        });
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                DatabaseHelper db = new DatabaseHelper((getBaseContext()));
+                Device device = adapter.getChild(i, i1);
+                List<Schedule> scheduleList = db.getSchedule(device.getDeviceID());
+                openSchedule(device, scheduleList);
+                return true;
             }
         });
     }
@@ -83,9 +89,14 @@ public class HomeActivity extends AppCompatActivity {
         expandableListView.setAdapter(adapter);
     }
 
-    public void openSchedule() {
+    public void openSchedule(Device device, List<Schedule> list) {
         Intent intent = new Intent(this, ScheduleActivity.class);
+        // Pass device data
+        Gson gson1 = new Gson();
+        intent.putExtra("Device", gson1.toJson(device));
+        // Check for empty list
+        Gson gson2 = new Gson();
+        intent.putExtra("List", gson2.toJson(list));
         startActivity(intent);
-
     }
 }
