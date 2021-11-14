@@ -1956,7 +1956,7 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btn_add_device
-id btn_add_room
+id btn_add_schedule
 id btn_cancel
 id btn_open_close
 id btn_open_close_all
@@ -1973,7 +1973,6 @@ id chain
 id chains
 id checkbox
 id checked
-id checkmark
 id chip
 id chip1
 id chip2
@@ -2089,6 +2088,7 @@ id italic
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
+id label
 id labeled
 id layout
 id left
@@ -2100,6 +2100,7 @@ id linear
 id list
 id listMode
 id list_item
+id list_schedule
 id listview_background_shape
 id login_button
 id masked
@@ -2297,7 +2298,6 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView3
-id text_add_schedule
 id text_close_time
 id text_device_name
 id text_input_end_icon
@@ -2444,7 +2444,9 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout edit_schedule_layout
 layout fragment_insert_device
+layout fragment_set_schedule
 layout homepage_layout
 layout login_layout
 layout material_chip_input_combo
@@ -2507,6 +2509,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout row_layout
 layout schedule_layout
+layout schedule_listview_layout
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -2528,7 +2531,6 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout toolbar_layout
-menu schedule_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
 
         expandableListView = findViewById(R.id.list);
         btn_addDevice = findViewById(R.id.btn_add_device);
-        //loadList();
+        loadList();
 
         btn_addDevice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
     // Add device
     public void addDevice() {
         InsertDeviceFragment fragment = new InsertDeviceFragment();
-        fragment.show(getSupportFragmentManager(), "Insert Device");
+        fragment.show(getSupportFragmentManager(), "insert_device");
         loadList();
     }
 
@@ -92,11 +92,11 @@ public class HomeActivity extends AppCompatActivity {
     public void openSchedule(Device device, List<Schedule> list) {
         Intent intent = new Intent(this, ScheduleActivity.class);
         // Pass device data
-        Gson gson1 = new Gson();
-        intent.putExtra("Device", gson1.toJson(device));
-        // Check for empty list
-        Gson gson2 = new Gson();
-        intent.putExtra("List", gson2.toJson(list));
+        Gson gson_device = new Gson();
+        intent.putExtra("Device", gson_device.toJson(device));
+        // Pass list data
+        Gson gson_list = new Gson();
+        intent.putExtra("List", gson_list.toJson(list));
         startActivity(intent);
     }
 }

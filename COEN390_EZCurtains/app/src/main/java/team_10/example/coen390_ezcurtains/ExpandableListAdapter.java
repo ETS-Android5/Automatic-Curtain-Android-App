@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,8 +74,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_header = view.findViewById(R.id.text_room_name);
+        Button btn_openAll = view.findViewById(R.id.btn_open_close_all);
         text_header.setTypeface(null, Typeface.BOLD);
         text_header.setText(header.getRoomName());
+
+        btn_openAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // open all devices
+
+            }
+        });
+
         return view;
     }
 
@@ -87,8 +98,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_child = view.findViewById(R.id.text_device_name);
-        TextView add_schedule = view.findViewById(R.id.text_add_schedule);
+        Button btn_openDevice = view.findViewById(R.id.btn_open_close);
         text_child.setText(child.getDeviceName());
+
+        btn_openDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // open device
+
+            }
+        });
 
         return view;
     }

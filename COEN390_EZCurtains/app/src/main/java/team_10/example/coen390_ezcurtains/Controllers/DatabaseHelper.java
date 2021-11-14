@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import ca.antonious.materialdaypicker.MaterialDayPicker;
 import team_10.example.coen390_ezcurtains.DBConfig;
 import team_10.example.coen390_ezcurtains.Models.Device;
 import team_10.example.coen390_ezcurtains.Models.Room;
@@ -49,13 +50,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_DEVICE_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_OPEN+" TEXT NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_CLOSE+" TEXT NOT NULL, "
-                +DBConfig.COLUMN_SCHEDULES_MONDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_TUESDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_WEDNESDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_THURSDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_FRIDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_SATURDAY+" INTEGER DEFAULT 0, "
-                +DBConfig.COLUMN_SCHEDULES_SUNDAY+" INTEGER DEFAULT 0 "+")");
+                +DBConfig.COLUMN_SCHEDULES_MONDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_TUESDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_WEDNESDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_THURSDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_FRIDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_SATURDAY+" TEXT DEFAULT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_SUNDAY+" TEXT DEFAULT NULL "+")");
     }
 
     @Override
@@ -77,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_USERS_PASSWORD, user.getPassword());
         // Insert row int user table
         id = dB.insert(DBConfig.TABLE_USERS, null, contentValues);
-        dB.close();
+        //dB.close();
         return id;
     }
 
@@ -89,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
         // Insert row into user table
         id = dB.insert(DBConfig.TABLE_DEVICES, null, contentValues);
-        dB.close();
+        //dB.close();
         return id;
     }
 
@@ -100,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_ROOMS_NAME, room.getRoomName());
         // Insert row into room table
         id = db.insert(DBConfig.TABLE_ROOMS, null, contentValues);
-        db.close();
+        //db.close();
         return id;
     }
 
@@ -120,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_SCHEDULES_SUNDAY, schedule.getDaysOfTheWeek().get(6));
         // Insert row into schedule table
         id = db.insert(DBConfig.TABLE_SCHEDULES, null , contentValues);
-        db.close();
+        //db.close();
         return id;
     }
 
@@ -133,19 +134,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         boolean result = cursor.getCount() > 0;
         cursor.close();
-        db.close();
+        //db.close();
         return result;
     }
 
     // Get schedule for given device
     public List<Schedule> getSchedule(int id) {
         List<Schedule> scheduleList = new ArrayList<>();
-        List<Integer> daysList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM "+DBConfig.TABLE_SCHEDULES+" WHERE "+DBConfig.COLUMN_DEVICE_ID+" = "+id;
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
+                List<Integer> daysList = new ArrayList<>();
                 Schedule schedule = new Schedule();
                 schedule.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ID))));
                 schedule.setDeviceID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DEVICE_ID))));
@@ -159,11 +160,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_SATURDAY))));
                 daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_SUNDAY))));
                 schedule.setDaysOfTheWeek(daysList);
-
+                scheduleList.add(schedule);
             }while(cursor.moveToNext());
         }
         cursor.close();
-        db.close();
+        //db.close();
         return scheduleList;
     }
 
@@ -190,7 +191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
+        //db.close();
         return childrenList;
     }
 
@@ -210,7 +211,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
+        //db.close();
         return roomList;
     }
 
