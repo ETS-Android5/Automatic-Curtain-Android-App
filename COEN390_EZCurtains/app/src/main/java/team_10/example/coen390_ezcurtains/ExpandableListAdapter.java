@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
@@ -87,8 +91,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_child = view.findViewById(R.id.text_device_name);
-        TextView add_schedule = view.findViewById(R.id.text_add_schedule);
+        Button btn_openDevice = view.findViewById(R.id.btn_open_close);
         text_child.setText(child.getDeviceName());
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference test = database.getReference("Motor_start");
+
+        btn_openDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // open device
+                test.setValue(1);
+            }
+        });
 
         return view;
     }
