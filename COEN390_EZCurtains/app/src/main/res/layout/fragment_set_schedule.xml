@@ -54,9 +54,9 @@
 
         <Button
             android:id="@+id/set_open_time"
-            android:layout_width="115dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="100dp"
             android:backgroundTint="@color/white"
             android:elevation="4dp"
@@ -66,7 +66,7 @@
 
         <Button
             android:id="@+id/set_close_time"
-            android:layout_width="115dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="100dp"

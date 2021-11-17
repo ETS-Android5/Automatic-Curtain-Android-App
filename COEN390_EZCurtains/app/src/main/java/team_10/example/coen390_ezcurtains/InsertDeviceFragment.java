@@ -31,7 +31,6 @@ public class InsertDeviceFragment extends DialogFragment {
         roomName = view.findViewById(R.id.enter_roomName);
         btn_save = view.findViewById(R.id.btn_save);
         btn_cancel = view.findViewById(R.id.btn_cancel);
-        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +46,7 @@ public class InsertDeviceFragment extends DialogFragment {
 
                 if (!(name.equals("") || room.equals(""))) {
                     // Save in db
+                    DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
                     dbHelper.insertDevice(new Device(name, room));
                     dbHelper.insertRoom(new Room(room));
                     ((HomeActivity)getActivity()).loadList();

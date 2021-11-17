@@ -12,4 +12,10 @@
     <color name="sunset">#FC8862</color>
     <color name="orangejuice">#FDA26B</color>
     <color name="sunrise">#FDBB63</color>
+
+    <color name="dayPressed">@color/pomegranate</color>
+    <color name="daySelected">@color/pomegranate</color>
+    <color name="daySelectedTextColor">@android:color/white</color>
+    <color name="dayDeselected">#FAFAFA</color>
+    <color name="dayDeselectedTextColor">@android:color/black</color>
 </resources>
