@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/fragment_insert_device.xml" value="0.26313405797101447" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/row_layout.xml" value="0.26313405797101447" />
+        <entry key="..\:/Users/Nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/subitem_layout.xml" value="0.26313405797101447" />
         <entry key="app/src/main/res/drawable-anydpi/ic_add.xml" value="0.31145833333333334" />
         <entry key="app/src/main/res/layout/edit_schedule_layout.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/fragment_insert_device.xml" value="0.1956521739130435" />

@@ -8,6 +8,7 @@ team_10/example/coen390_ezcurtains/HomeActivity.java
  team_10.example.coen390_ezcurtains.HomeActivity
  team_10.example.coen390_ezcurtains.HomeActivity$1
  team_10.example.coen390_ezcurtains.HomeActivity$2
+ team_10.example.coen390_ezcurtains.HomeActivity$3
 team_10/example/coen390_ezcurtains/DBConfig.java
  team_10.example.coen390_ezcurtains.DBConfig
 team_10/example/coen390_ezcurtains/Controllers/SqlLiteUserAdapter.java

@@ -3,6 +3,7 @@ package team_10.example.coen390_ezcurtains;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,10 +99,37 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         DatabaseReference test = database.getReference("Motor_start");
 
         btn_openDevice.setOnClickListener(new View.OnClickListener() {
+            boolean isPressed = false;
             @Override
             public void onClick(View view) {
                 // open device
-                test.setValue(1);
+                // change button icon on click
+                btn_openDevice.setBackgroundResource(isPressed ? R.drawable.ic_open_arrows : R.drawable.ic_close_arrows);
+                // on open click
+                if (!isPressed) {
+                    test.setValue(1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            test.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                }
+                // on close click
+                else if (isPressed) {
+                    test.setValue(-1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            test.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                }
+                isPressed = !isPressed;
             }
         });
 
