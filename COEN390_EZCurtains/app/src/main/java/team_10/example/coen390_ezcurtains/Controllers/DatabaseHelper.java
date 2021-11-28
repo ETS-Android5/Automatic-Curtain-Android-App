@@ -48,8 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SCHEDULES+"( "
                 +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY NOT NULL, "
                 +DBConfig.COLUMN_DEVICE_ID+" INTEGER NOT NULL, "
-                +DBConfig.COLUMN_SCHEDULES_OPEN+" TEXT NOT NULL, "
-                +DBConfig.COLUMN_SCHEDULES_CLOSE+" TEXT NOT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_OPEN+" INTEGER NOT NULL, "
+                +DBConfig.COLUMN_SCHEDULES_CLOSE+" INTERGER NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_MONDAY+" TEXT DEFAULT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_TUESDAY+" TEXT DEFAULT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_WEDNESDAY+" TEXT DEFAULT NULL, "
@@ -255,8 +255,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Schedule schedule = new Schedule();
                 schedule.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ID))));
                 schedule.setDeviceID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DEVICE_ID))));
-                schedule.setOpenTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_OPEN))));
-                schedule.setCloseTime(cursor.getString((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_CLOSE))));
+                schedule.setOpenTime(cursor.getLong((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_OPEN))));
+                schedule.setCloseTime(cursor.getLong((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_CLOSE))));
                 daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_MONDAY))));
                 daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_TUESDAY))));
                 daysList.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_SCHEDULES_WEDNESDAY))));
@@ -269,7 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }while(cursor.moveToNext());
         }
         cursor.close();
-        //db.close();
+        db.close();
         return scheduleList;
     }
 

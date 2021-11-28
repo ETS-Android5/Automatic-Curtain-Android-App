@@ -5,32 +5,30 @@ import java.util.List;
 public class Schedule {
     private int scheduleID;
     private int deviceID;
-    private String openTime;
-    private String closeTime;
+    private long openTime;
+    private long closeTime;
     private List<Integer> daysOfTheWeek;
 
     public Schedule() {}
 
-    public Schedule(int deviceID, String openTime, String closeTime, List<Integer> daysOfTheWeek) {
+    public Schedule(int deviceID, long openTime, long closeTime, List<Integer> daysOfTheWeek) {
         this.deviceID = deviceID;
         this.openTime = openTime;
         this.closeTime = closeTime;
         this.daysOfTheWeek = daysOfTheWeek;
     }
 
-    public String getOpenTime() {
+    public long getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
-    }
+    public void setOpenTime(long openTime) { this.openTime = openTime; }
 
-    public String getCloseTime() {
+    public long getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(String closeTime) {
+    public void setCloseTime(long closeTime) {
         this.closeTime = closeTime;
     }
 

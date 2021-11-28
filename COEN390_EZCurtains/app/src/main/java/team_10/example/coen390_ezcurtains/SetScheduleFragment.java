@@ -1,5 +1,8 @@
 package team_10.example.coen390_ezcurtains;
 
+import android.app.AlarmManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -16,6 +19,7 @@ import com.google.android.material.timepicker.TimeFormat;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -99,18 +103,18 @@ public class SetScheduleFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+                Calendar open = setCalendar(timepickerOpen.getHour(), timepickerOpen.getMinute());
+                Calendar close = setCalendar(timepickerClose.getHour(), timepickerClose.getMinute());
                 Schedule schedule = new Schedule();
                 List<MaterialDayPicker.Weekday> list = dayPicker.getSelectedDays();
-                schedule.setOpenTime(openTime.getText().toString());
-                schedule.setCloseTime(closeTime.getText().toString());
+                schedule.setOpenTime(open.getTimeInMillis());
+                schedule.setCloseTime(close.getTimeInMillis());
                 schedule.setDeviceID(device.getDeviceID());
                 schedule.setDaysOfTheWeek(fromWeekdayToInt(list));
                 if (dbHelper.insertSchedule(schedule) != -1) {
                     ((ScheduleActivity)getActivity()).loadList();
                     dismiss();
                     Toast.makeText(getActivity(), "Schedule saved successfully", Toast.LENGTH_SHORT).show();
-                    // Create schedule alarm
-
                 }
                 else {
                     Toast.makeText(getActivity(), "Failed to add schedule", Toast.LENGTH_SHORT).show();
@@ -121,6 +125,7 @@ public class SetScheduleFragment extends DialogFragment {
         return view;
     }
 
+    // Initialize timepickers
     public void createTimePickers() {
         timepickerOpen = new MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_12H)
@@ -137,6 +142,7 @@ public class SetScheduleFragment extends DialogFragment {
                 .build();
     }
 
+    // Format selected time into a string to be displayed in 12 hour format
     public String timeString(MaterialTimePicker view, int hour, int minute) {
         String min = null;
         String am_pm = null;
@@ -160,25 +166,34 @@ public class SetScheduleFragment extends DialogFragment {
         return timeString;
     }
 
+    // Create Calendar object for selected times
+    public Calendar setCalendar(int hour, int min) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, hour);
+        c.set(Calendar.MINUTE, min);
+        c.set(Calendar.SECOND, 0);
+        return c;
+    }
+
+    // Create a list of weekdays where selected weekdays are 1 and not selected weekdays, 0
     public List<Integer> fromWeekdayToInt(List<MaterialDayPicker.Weekday> list) {
         List<Integer> daysOfTheWeek = new ArrayList<>(Collections.nCopies(7,0));
         for (MaterialDayPicker.Weekday weekday: list) {
             if (weekday == MaterialDayPicker.Weekday.MONDAY)
-                daysOfTheWeek.set(0, 1);
-            if (weekday == MaterialDayPicker.Weekday.TUESDAY)
                 daysOfTheWeek.set(1, 1);
-            if (weekday == MaterialDayPicker.Weekday.WEDNESDAY)
+            if (weekday == MaterialDayPicker.Weekday.TUESDAY)
                 daysOfTheWeek.set(2, 1);
-            if (weekday == MaterialDayPicker.Weekday.THURSDAY)
+            if (weekday == MaterialDayPicker.Weekday.WEDNESDAY)
                 daysOfTheWeek.set(3, 1);
-            if (weekday == MaterialDayPicker.Weekday.FRIDAY)
+            if (weekday == MaterialDayPicker.Weekday.THURSDAY)
                 daysOfTheWeek.set(4, 1);
-            if (weekday == MaterialDayPicker.Weekday.SATURDAY)
+            if (weekday == MaterialDayPicker.Weekday.FRIDAY)
                 daysOfTheWeek.set(5, 1);
-            if (weekday == MaterialDayPicker.Weekday.SUNDAY)
+            if (weekday == MaterialDayPicker.Weekday.SATURDAY)
                 daysOfTheWeek.set(6, 1);
+            if (weekday == MaterialDayPicker.Weekday.SUNDAY)
+                daysOfTheWeek.set(0, 1);
         }
-
         return daysOfTheWeek;
     }
 }

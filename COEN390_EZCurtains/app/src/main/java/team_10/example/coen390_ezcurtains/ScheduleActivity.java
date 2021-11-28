@@ -1,5 +1,8 @@
 package team_10.example.coen390_ezcurtains;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -26,6 +29,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper;
@@ -94,6 +98,7 @@ public class ScheduleActivity extends AppCompatActivity {
         }
         else
             scheduleList = gson_list.fromJson(data.getStringExtra("List"), type);
+
         loadList();
     }
 
@@ -105,35 +110,35 @@ public class ScheduleActivity extends AppCompatActivity {
         // Format string to display in list view
         for (Schedule schedule : scheduleList) {
             List<Integer> list_days = schedule.getDaysOfTheWeek();
-            String day_string = null;
+            String day_string = "";
             for (int i = 0; i < list_days.size(); i++) {
                 int day = list_days.get(i);
                 switch (i) {
                     case 0:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1) {
                             day_string = "Mon. ";
                             break;
                         }
                     case 1:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Tue. ";
                             break;
                         }
                         else if (day == 1){
-                            day_string = day_string+" Tue. ";
+                            day_string = day_string+" Tue.";
                             break;
                         }
                     case 2:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Wed. ";
                             break;
                         }
-                        else if (day == 1) {
+                        else if (day == 1){
                             day_string = day_string+" Wed. ";
                             break;
                         }
                     case 3:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Thu. ";
                             break;
                         }
@@ -142,7 +147,7 @@ public class ScheduleActivity extends AppCompatActivity {
                             break;
                         }
                     case 4:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Fri. ";
                             break;
                         }
@@ -151,30 +156,56 @@ public class ScheduleActivity extends AppCompatActivity {
                             break;
                         }
                     case 5:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Sat. ";
                             break;
                         }
-                        else if (day == 1){
+                        else if (day == 1) {
                             day_string = day_string+" Sat. ";
                             break;
                         }
                     case 6:
-                        if (day == 1 && day_string == null) {
+                        if (day == 1 && day_string.equals("")) {
                             day_string = "Sun. ";
                             break;
                         }
                         else if (day == 1){
-                            day_string = day_string+" Sun.";
+                            day_string = day_string+" Sun. ";
                             break;
                         }
                 }
             }
-            log = "Schedule "+schedule.getScheduleID()+"\nOpen Time: "+schedule.getOpenTime()+"        Close Time: "+schedule.getCloseTime()+"\n"+day_string;
+            log = "Open Time: "+timeString(schedule.getOpenTime())+"       Close Time: "+timeString(schedule.getCloseTime())+"\n"+day_string;
             displayedList.add(log);
         }
         adapter = new ArrayAdapter(this, R.layout.schedule_listview_layout, displayedList);
         listView.setAdapter(adapter);
+    }
+
+    // Create alarms
+    public void createAlarm(List<Schedule> scheduleList) {
+        Calendar alarmOpen = Calendar.getInstance();
+        Calendar alarmClose = Calendar.getInstance();
+        for (Schedule schedule:scheduleList) {
+            alarmOpen.setTimeInMillis(schedule.getOpenTime());
+            alarmClose.setTimeInMillis(schedule.getCloseTime());
+            List<Integer> days = schedule.getDaysOfTheWeek();
+            for(int i=1; i<=days.size();i++) {
+                if(days.get(i) == 1) {
+                    alarmOpen.set(Calendar.DAY_OF_WEEK, i);
+                    // check if alarm is being set in the past
+                    if(alarmOpen.getTimeInMillis() < System.currentTimeMillis())
+                        alarmOpen.set(Calendar.DATE, 7);
+                }
+
+                final int id = (int) System.currentTimeMillis(); // id used to set multiple alarms
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent intent = new Intent(this, ScheduleReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmOpen.getTimeInMillis(), 7*24*60*60*1000, pendingIntent);
+            }
+        }
+
     }
 
     @Override
@@ -185,5 +216,33 @@ public class ScheduleActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Format selected time into a string to be displayed in 12 hour format
+    public String timeString(long timeInMillis) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(timeInMillis);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        String min = null;
+        String am_pm = null;
+        String timeString = null;
+
+        if (hour > 12) {
+            hour -= 12;
+            am_pm = "AM";
+        }
+        else if (hour == 0) {
+            hour += 12;
+            am_pm = "PM";
+        }
+        else if (hour == 12) { am_pm = "AM"; }
+        else { am_pm = "PM"; }
+
+        if (minute < 10) { min = "0" + minute; }
+        else { min = String.valueOf(minute); }
+
+        timeString = hour + " : " + min + " " + am_pm;
+        return timeString;
     }
 }
