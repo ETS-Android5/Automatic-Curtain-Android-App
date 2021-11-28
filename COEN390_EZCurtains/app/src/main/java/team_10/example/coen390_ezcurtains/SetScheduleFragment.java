@@ -109,6 +109,8 @@ public class SetScheduleFragment extends DialogFragment {
                     ((ScheduleActivity)getActivity()).loadList();
                     dismiss();
                     Toast.makeText(getActivity(), "Schedule saved successfully", Toast.LENGTH_SHORT).show();
+                    // Create schedule alarm
+
                 }
                 else {
                     Toast.makeText(getActivity(), "Failed to add schedule", Toast.LENGTH_SHORT).show();

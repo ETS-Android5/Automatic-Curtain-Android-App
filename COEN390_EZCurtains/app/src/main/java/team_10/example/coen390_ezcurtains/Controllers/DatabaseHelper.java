@@ -57,6 +57,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_SCHEDULES_FRIDAY+" TEXT DEFAULT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_SATURDAY+" TEXT DEFAULT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_SUNDAY+" TEXT DEFAULT NULL "+")");
+
+        // Create selected parent items table
+        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_PARENTS+"( "
+                +DBConfig.COLUMN_PARENT_ID+" INTEGER PRIMARY KEY NOT NULL "+")");
+
+        // Create selected children items table
+        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_CHILDREN+"( "
+                +DBConfig.COLUMN_PARENT_ID+" INTEGER NOT NULL, "
+                +DBConfig.COLUMN_CHILD_ID+" INTEGER NOT NULL ,"
+                +"PRIMARY KEY("+DBConfig.COLUMN_PARENT_ID+", "+DBConfig.COLUMN_CHILD_ID+")"+")");
     }
 
     @Override
@@ -66,6 +76,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_DEVICES);
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_ROOMS);
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SCHEDULES);
+        dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SELECTED_PARENTS);
+        dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SELECTED_CHILDREN);
         // Create new tables
         onCreate(dB);
     }
@@ -125,6 +137,61 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public long insertSelectedParent(int headerPosition) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_PARENT_ID, headerPosition);
+        // Insert row into schedule table
+        id = db.insert(DBConfig.TABLE_SELECTED_PARENTS, null, contentValues);
+        db.close();
+        return id;
+    }
+
+    public long insertSelectedChild(int headerPosition, int childPosition) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_PARENT_ID, headerPosition);
+        contentValues.put(DBConfig.COLUMN_CHILD_ID, childPosition);
+        // Insert row into schedule table
+        id = db.insert(DBConfig.TABLE_SELECTED_CHILDREN, null, contentValues);
+        db.close();
+        return id;
+    }
+
+    public void removeSelectedParent(int headerPosition) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DBConfig.TABLE_SELECTED_PARENTS, DBConfig.COLUMN_PARENT_ID+" = ?", new String[]{Integer.toString(headerPosition)});
+        db.close();
+    }
+
+    public void removeSelectedChild(int headerPosition, int childPosition) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(DBConfig.TABLE_SELECTED_CHILDREN, DBConfig.COLUMN_PARENT_ID+" = ? AND "+DBConfig.COLUMN_CHILD_ID+"=?", new String[]{Integer.toString(headerPosition), Integer.toString(childPosition)});
+        db.close();
+    }
+
+    public boolean checkSelectedParent(int headerPosition) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_SELECTED_PARENTS
+                +" WHERE "+ DBConfig.COLUMN_PARENT_ID+" = "+headerPosition;
+        Cursor cursor = db.rawQuery(query, null);
+        boolean result = cursor.getCount() > 0;
+        db.close();
+        return result;
+    }
+
+    public boolean checkSelectedChild(int headerPosition, int childPosition) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_SELECTED_CHILDREN
+                +" WHERE "+ DBConfig.COLUMN_PARENT_ID+" = "+headerPosition+" AND "+DBConfig.COLUMN_CHILD_ID+" = "+childPosition;
+        Cursor cursor = db.rawQuery(query, null);
+        boolean result = cursor.getCount() > 0;
+        db.close();
+        return result;
+    }
+
     // Check if room name already exists
     public boolean checkRoom(String roomName) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -136,6 +203,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         //db.close();
         return result;
+    }
+
+    // Get selected parents
+    public List<Integer> getSelectedParents() {
+        List<Integer> selectedParents = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_SELECTED_PARENTS;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                selectedParents.add(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_PARENT_ID))));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return selectedParents;
+    }
+
+    // Get selected children
+    public HashMap<Integer, List<Integer>> getSelectedChildren() {
+        HashMap<Integer, List<Integer>> selectedChildren = new HashMap<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_SELECTED_CHILDREN;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int headerPos = cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_PARENT_ID)));
+                int childPos = cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_CHILD_ID)));
+                // Check if key is present, if not add key with new list
+                if (!(selectedChildren.containsKey(headerPos))) {
+                    selectedChildren.put(headerPos, new ArrayList<Integer>());
+                }
+                selectedChildren.get(headerPos).add(childPos);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return selectedChildren;
     }
 
     // Get schedule for given device

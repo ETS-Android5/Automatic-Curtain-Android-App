@@ -1,33 +1,27 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_device_name"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_centerVertical="true"
+        android:layout_marginStart="40dp"
+        android:text="Device Name"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/text_device_name"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:text="Device Name"
-            android:layout_gravity="center_vertical"
-            android:textSize="20sp"/>
+    <Button
+        android:id="@+id/btn_open_close"
+        android:layout_width="83dp"
+        android:layout_toEndOf="@+id/text_device_name"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="49dp"
+        android:backgroundTint="@color/pomegranate"
+        android:focusable="false"
+        android:text="Open" />
 
-        <Button
-            android:id="@+id/btn_open_close"
-            android:layout_width="56dp"
-            android:layout_height="45dp"
-            android:backgroundTint="@color/pomegranate"
-            app:icon="@drawable/ic_open_arrows"
-            android:layout_marginStart="67dp"
-            android:focusable="false"/>
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

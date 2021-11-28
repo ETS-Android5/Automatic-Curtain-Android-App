@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "368207826574",
+    "firebase_url": "https://coen390-ezcurtains-default-rtdb.firebaseio.com",
+    "project_id": "coen390-ezcurtains",
+    "storage_bucket": "coen390-ezcurtains.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368207826574:android:3e0d328349a86c9a6003df",
+        "android_client_info": {
+          "package_name": "team_10.example.coen390_ezcurtains"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368207826574-9hk92ltkp5905p25hbfuirh7lp5gk6ej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlegSLcq92puQdF9Nm4sXO6pg3l5KQT1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368207826574-9hk92ltkp5905p25hbfuirh7lp5gk6ej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

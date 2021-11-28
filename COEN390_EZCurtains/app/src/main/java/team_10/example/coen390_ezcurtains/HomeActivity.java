@@ -2,6 +2,7 @@ package team_10.example.coen390_ezcurtains;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
@@ -112,10 +113,12 @@ public class HomeActivity extends AppCompatActivity {
     // Load expandable list view
     public void loadList() {
         DatabaseHelper dbHelper = new DatabaseHelper((getBaseContext()));
+        Parcelable state = expandableListView.onSaveInstanceState();
         list_room_names = dbHelper.getRooms();
         list_devices = dbHelper.getDevices();
         adapter = new ExpandableListAdapter(HomeActivity.this, list_room_names, list_devices);
         expandableListView.setAdapter(adapter);
+        expandableListView.onRestoreInstanceState(state);
     }
 
     public void openSchedule(Device device, List<Schedule> list) {

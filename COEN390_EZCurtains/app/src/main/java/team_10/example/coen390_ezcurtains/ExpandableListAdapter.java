@@ -1,5 +1,6 @@
 package team_10.example.coen390_ezcurtains;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper;
 import team_10.example.coen390_ezcurtains.Models.Device;
 import team_10.example.coen390_ezcurtains.Models.Room;
 
@@ -27,6 +31,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Room> list_header; // rooms
     private HashMap<String, List<Device>> list_child; // device
+    private HashMap<Integer, Integer> pressed_items; // pressed child items
+    private List<Integer> pressed_header_items; // pressed parent items
 
     public ExpandableListAdapter(Context context, List<Room> list_header, HashMap<String, List<Device>> list_child) {
         this.context = context;
@@ -78,8 +84,55 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_header = view.findViewById(R.id.text_room_name);
+        Button btnOpenCloseAll = view.findViewById(R.id.btn_open_close_all);
+        DatabaseHelper dbHelper = new DatabaseHelper(view.getContext());
         text_header.setTypeface(null, Typeface.BOLD);
         text_header.setText(header.getRoomName());
+        // Format button text
+        if (!dbHelper.checkSelectedParent(headerPosition)) {
+            btnOpenCloseAll.setText("Open All");
+        }
+        else {
+            btnOpenCloseAll.setText("Close All");
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference test = database.getReference("Motor_start");
+
+
+        btnOpenCloseAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // OPEN
+                if (!dbHelper.checkSelectedParent(headerPosition)) {
+                    btnOpenCloseAll.setText("Close All");
+                    dbHelper.insertSelectedParent(headerPosition);
+                    test.setValue(1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            test.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                }
+                // CLOSE
+                else {
+                    btnOpenCloseAll.setText("Open All");
+                    dbHelper.removeSelectedParent(headerPosition);
+                    test.setValue(-1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            test.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                }
+            }
+        });
         return view;
     }
 
@@ -92,21 +145,28 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_child = view.findViewById(R.id.text_device_name);
-        Button btn_openDevice = view.findViewById(R.id.btn_open_close);
+        Button btnOpenCloseDevice = view.findViewById(R.id.btn_open_close);
+        DatabaseHelper dbHelper = new DatabaseHelper(view.getContext());
         text_child.setText(child.getDeviceName());
+
+        // Format button text
+        if (!dbHelper.checkSelectedChild(headerPosition, childPosition)) {
+            btnOpenCloseDevice.setText("Open");
+        }
+        else {
+            btnOpenCloseDevice.setText("Close");
+        }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference test = database.getReference("Motor_start");
 
-        btn_openDevice.setOnClickListener(new View.OnClickListener() {
-            boolean isPressed = false;
+        btnOpenCloseDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // open device
-                // change button icon on click
-                btn_openDevice.setBackgroundResource(isPressed ? R.drawable.ic_open_arrows : R.drawable.ic_close_arrows);
-                // on open click
-                if (!isPressed) {
+                // OPEN
+                if (!dbHelper.checkSelectedChild(headerPosition, childPosition)) {
+                    btnOpenCloseDevice.setText("Close");
+                    dbHelper.insertSelectedChild(headerPosition, childPosition);
                     test.setValue(1);
                     // run motor for 5 seconds
                     Handler handler = new Handler();
@@ -117,8 +177,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                         }
                     }, 5000); // change value to adjust time
                 }
-                // on close click
-                else if (isPressed) {
+                // CLOSE
+                else {
+                    btnOpenCloseDevice.setText("Open");
+                    dbHelper.removeSelectedChild(headerPosition, childPosition);
                     test.setValue(-1);
                     // run motor for 5 seconds
                     Handler handler = new Handler();
@@ -129,10 +191,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                         }
                     }, 5000); // change value to adjust time
                 }
-                isPressed = !isPressed;
             }
         });
-
         return view;
     }
 

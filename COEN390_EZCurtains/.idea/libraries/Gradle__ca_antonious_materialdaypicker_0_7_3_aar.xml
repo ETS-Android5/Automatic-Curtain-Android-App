@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: ca.antonious:materialdaypicker:0.7.3@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/98b1a8c4833d07e2b5a7c0bd1b183425/transformed/jetified-materialdaypicker-0.7.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/98b1a8c4833d07e2b5a7c0bd1b183425/transformed/jetified-materialdaypicker-0.7.3/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/98b1a8c4833d07e2b5a7c0bd1b183425/transformed/jetified-materialdaypicker-0.7.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/38c9ce9a4290e6fdf16b7dec097888b6/transformed/jetified-materialdaypicker-0.7.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/38c9ce9a4290e6fdf16b7dec097888b6/transformed/jetified-materialdaypicker-0.7.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/38c9ce9a4290e6fdf16b7dec097888b6/transformed/jetified-materialdaypicker-0.7.3/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ca.antonious/materialdaypicker/0.7.3/2525a25690e0d4b2a488ad6c47c8f61a37d1dfb1/materialdaypicker-0.7.3-javadoc.jar!/" />
