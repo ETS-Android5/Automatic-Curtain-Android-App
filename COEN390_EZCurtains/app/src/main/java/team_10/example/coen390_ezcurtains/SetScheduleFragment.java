@@ -113,7 +113,10 @@ public class SetScheduleFragment extends DialogFragment {
                 schedule.setCloseTime(close.getTimeInMillis());
                 schedule.setDeviceID(device.getDeviceID());
                 schedule.setDaysOfTheWeek(fromWeekdayToInt(list));
-                if (dbHelper.insertSchedule(schedule) != -1) {
+                if(openTime.getText().toString().isEmpty() || closeTime.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Set open and close time", Toast.LENGTH_SHORT).show();
+                }
+                else if (dbHelper.insertSchedule(schedule) != -1) {
                     ((ScheduleActivity)getActivity()).loadList();
                     createAlarm(schedule);
                     dismiss();

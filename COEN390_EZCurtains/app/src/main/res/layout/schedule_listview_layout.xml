@@ -1,8 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/label"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:textSize="16sp">
-</TextView>
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="27dp"
+        android:text="Open:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/open_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_toEndOf="@+id/open"
+        android:text="12:00 AM"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/open_time"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="27dp"
+        android:text="Close:"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/close_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/close"
+        android:layout_marginTop="13dp"
+        android:text="12:00 PM"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/repeating_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/open_time"
+        android:layout_marginStart="10dp"
+        android:text="Not Scheduled"
+        android:textSize="18sp" />
+
+</RelativeLayout>

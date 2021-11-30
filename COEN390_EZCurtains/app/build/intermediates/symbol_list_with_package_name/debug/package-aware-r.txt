@@ -1999,7 +1999,6 @@ id btn_add_device
 id btn_add_schedule
 id btn_cancel
 id btn_open_close
-id btn_open_close_all
 id btn_save
 id buttonPanel
 id cache_measures
@@ -2024,6 +2023,8 @@ id clear_text
 id clip_horizontal
 id clip_vertical
 id clockwise
+id close
+id close_time
 id closest
 id collapseActionView
 id confirm_button
@@ -2047,6 +2048,7 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id delete
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -2075,6 +2077,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id edit
 id edit_query
 id elastic
 id end
@@ -2130,7 +2133,6 @@ id italic
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
-id label
 id labeled
 id layout
 id left
@@ -2221,6 +2223,8 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id open
+id open_time
 id outline
 id outward
 id overshoot
@@ -2244,6 +2248,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id repeating_days
 id reverseSawtooth
 id right
 id rightToLeft
@@ -2274,6 +2279,8 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id sensor_reading
+id sensor_value
 id set_close_time
 id set_open_time
 id sharedValueSet
@@ -2489,7 +2496,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout edit_schedule_layout
 layout fragment_insert_device
 layout fragment_set_schedule
 layout homepage_layout
@@ -2576,6 +2582,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout toolbar_layout
+menu context_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

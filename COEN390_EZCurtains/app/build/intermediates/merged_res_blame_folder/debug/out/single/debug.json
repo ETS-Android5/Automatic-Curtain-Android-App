@@ -24,6 +24,10 @@
         "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/toolbar_layout.xml"
     },
     {
+        "merged": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/merged_res/debug/menu_context_menu.xml.flat",
+        "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/menu/context_menu.xml"
+    },
+    {
         "merged": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
     },
@@ -114,10 +118,6 @@
     {
         "merged": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/merged_res/debug/mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/merged_res/debug/layout_edit_schedule_layout.xml.flat",
-        "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/layout/edit_schedule_layout.xml"
     },
     {
         "merged": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/merged_res/debug/mipmap-xxxhdpi_ic_launcher.webp.flat",

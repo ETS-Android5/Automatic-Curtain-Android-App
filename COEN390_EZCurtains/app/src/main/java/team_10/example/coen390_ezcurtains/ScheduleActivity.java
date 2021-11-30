@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -40,7 +42,7 @@ public class ScheduleActivity extends AppCompatActivity {
     protected FloatingActionButton btn_add_schedule;
     protected ListView listView;
     protected List<Schedule> scheduleList;
-    protected ArrayAdapter adapter;
+    protected ListAdapter adapter;
     protected Device device;
 
     @Override
@@ -54,8 +56,6 @@ public class ScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btn_add_schedule = findViewById(R.id.btn_add_schedule);
         listView = findViewById(R.id.list_schedule);
-
-        //loadList();
 
         btn_add_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +75,7 @@ public class ScheduleActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // Open menu with delete options
+                registerForContextMenu(listView);
                 return false;
             }
         });
@@ -102,83 +103,36 @@ public class ScheduleActivity extends AppCompatActivity {
         loadList();
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Schedule schedule = (Schedule) scheduleList.get(menuInfo.position);
+        DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
+        if(item.getItemId() == R.id.edit) {
+            Toast.makeText(this, "edit "+schedule.getScheduleID(), Toast.LENGTH_SHORT).show();
+            loadList();
+            return true;
+        }
+        else if(item.getItemId() == R.id.delete) {
+            if(dbHelper.removeSchedule(schedule.getScheduleID()) != -1)
+                Toast.makeText(this, "Successfully deleted schedule", Toast.LENGTH_SHORT).show();
+            loadList();
+            return true;
+        }
+        else
+            return super.onContextItemSelected(item);
+    }
+
     public void loadList() {
         DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
         scheduleList = dbHelper.getSchedule(device.getDeviceID());
-        List<String> displayedList = new ArrayList<>();
-        String log;
-        // Format string to display in list view
-        for (Schedule schedule : scheduleList) {
-            List<Integer> list_days = schedule.getDaysOfTheWeek();
-            String day_string = "";
-            for (int i = 0; i < list_days.size(); i++) {
-                int day = list_days.get(i);
-                switch (i) {
-                    case 0:
-                        if (day == 1) {
-                            day_string = "Mon. ";
-                            break;
-                        }
-                    case 1:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Tue. ";
-                            break;
-                        }
-                        else if (day == 1){
-                            day_string = day_string+" Tue.";
-                            break;
-                        }
-                    case 2:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Wed. ";
-                            break;
-                        }
-                        else if (day == 1){
-                            day_string = day_string+" Wed. ";
-                            break;
-                        }
-                    case 3:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Thu. ";
-                            break;
-                        }
-                        else if (day == 1) {
-                            day_string = day_string+" Thu. ";
-                            break;
-                        }
-                    case 4:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Fri. ";
-                            break;
-                        }
-                        else if (day == 1) {
-                            day_string = day_string+" Fri. ";
-                            break;
-                        }
-                    case 5:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Sat. ";
-                            break;
-                        }
-                        else if (day == 1) {
-                            day_string = day_string+" Sat. ";
-                            break;
-                        }
-                    case 6:
-                        if (day == 1 && day_string.equals("")) {
-                            day_string = "Sun. ";
-                            break;
-                        }
-                        else if (day == 1){
-                            day_string = day_string+" Sun. ";
-                            break;
-                        }
-                }
-            }
-            log = "Open Time: "+timeString(schedule.getOpenTime())+"       Close Time: "+timeString(schedule.getCloseTime())+"\n"+day_string;
-            displayedList.add(log);
-        }
-        adapter = new ArrayAdapter(this, R.layout.schedule_listview_layout, displayedList);
+        adapter = new ListAdapter(this, scheduleList);
         listView.setAdapter(adapter);
     }
 
@@ -205,43 +159,5 @@ public class ScheduleActivity extends AppCompatActivity {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmOpen.getTimeInMillis(), 7*24*60*60*1000, pendingIntent);
             }
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    // Format selected time into a string to be displayed in 12 hour format
-    public String timeString(long timeInMillis) {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(timeInMillis);
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
-        String min = null;
-        String am_pm = null;
-        String timeString = null;
-
-        if (hour > 12) {
-            hour -= 12;
-            am_pm = "AM";
-        }
-        else if (hour == 0) {
-            hour += 12;
-            am_pm = "PM";
-        }
-        else if (hour == 12) { am_pm = "AM"; }
-        else { am_pm = "PM"; }
-
-        if (minute < 10) { min = "0" + minute; }
-        else { min = String.valueOf(minute); }
-
-        timeString = hour + " : " + min + " " + am_pm;
-        return timeString;
     }
 }

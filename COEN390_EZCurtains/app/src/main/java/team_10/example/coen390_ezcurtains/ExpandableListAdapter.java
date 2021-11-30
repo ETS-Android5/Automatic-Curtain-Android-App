@@ -84,55 +84,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView text_header = view.findViewById(R.id.text_room_name);
-        Button btnOpenCloseAll = view.findViewById(R.id.btn_open_close_all);
         DatabaseHelper dbHelper = new DatabaseHelper(view.getContext());
         text_header.setTypeface(null, Typeface.BOLD);
         text_header.setText(header.getRoomName());
-        // Format button text
-        if (!dbHelper.checkSelectedParent(headerPosition)) {
-            btnOpenCloseAll.setText("Open All");
-        }
-        else {
-            btnOpenCloseAll.setText("Close All");
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference test = database.getReference("Motor_start");
-
-
-        btnOpenCloseAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // OPEN
-                if (!dbHelper.checkSelectedParent(headerPosition)) {
-                    btnOpenCloseAll.setText("Close All");
-                    dbHelper.insertSelectedParent(headerPosition);
-                    test.setValue(1);
-                    // run motor for 5 seconds
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            test.setValue(0);
-                        }
-                    }, 5000); // change value to adjust time
-                }
-                // CLOSE
-                else {
-                    btnOpenCloseAll.setText("Open All");
-                    dbHelper.removeSelectedParent(headerPosition);
-                    test.setValue(-1);
-                    // run motor for 5 seconds
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            test.setValue(0);
-                        }
-                    }, 5000); // change value to adjust time
-                }
-            }
-        });
         return view;
     }
 

@@ -180,6 +180,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public long removeSchedule(int scheduleID) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        id = db.delete(DBConfig.TABLE_SCHEDULES, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(scheduleID)});
+        db.close();
+        return id;
+    }
+
     public void removeSelectedParent(int headerPosition) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DBConfig.TABLE_SELECTED_PARENTS, DBConfig.COLUMN_PARENT_ID+" = ?", new String[]{Integer.toString(headerPosition)});
