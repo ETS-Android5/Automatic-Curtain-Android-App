@@ -14,6 +14,7 @@ import java.util.List;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 import team_10.example.coen390_ezcurtains.DBConfig;
+import team_10.example.coen390_ezcurtains.Models.Alarm;
 import team_10.example.coen390_ezcurtains.Models.Device;
 import team_10.example.coen390_ezcurtains.Models.Room;
 import team_10.example.coen390_ezcurtains.Models.Schedule;
@@ -58,6 +59,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_SCHEDULES_SATURDAY+" TEXT DEFAULT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_SUNDAY+" TEXT DEFAULT NULL "+")");
 
+        // Create alarm table
+        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_ALARMS+"( "
+                +DBConfig.COLUMN_ALARM_ID+" INTEGER PRIMARY KEY NOT NULL, "
+                +DBConfig.COLUMN_ALARM_SCHEDULE_ID+" INTEGER NOT NULL, "
+                +DBConfig.COLUMN_DAY_OF_WEEK+" INTEGER NOT NULL "+")");
+
         // Create selected parent items table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_PARENTS+"( "
                 +DBConfig.COLUMN_PARENT_ID+" INTEGER PRIMARY KEY NOT NULL "+")");
@@ -88,9 +95,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBConfig.COLUMN_USERS_USERNAME, user.getUserName());
         contentValues.put(DBConfig.COLUMN_USERS_PASSWORD, user.getPassword());
-        // Insert row int user table
+        // Insert row into user table
         id = dB.insert(DBConfig.TABLE_USERS, null, contentValues);
         //dB.close();
+        return id;
+    }
+
+    public long insertAlarm(Alarm alarm) {
+        long id = -1;
+        SQLiteDatabase dB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_ALARM_ID, alarm.getAlarmID());
+        contentValues.put(DBConfig.COLUMN_ALARM_SCHEDULE_ID, alarm.getScheduleID());
+        contentValues.put(DBConfig.COLUMN_DAY_OF_WEEK, alarm.getDay());
+        // Insert row into user table
+        id = dB.insert(DBConfig.TABLE_ALARMS, null, contentValues);
+        dB.close();
         return id;
     }
 
@@ -203,6 +223,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         //db.close();
         return result;
+    }
+
+    public Alarm getAlarm(int scheduleID, int day) {
+        Alarm alarm = new Alarm();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+DBConfig.TABLE_ALARMS
+                +" WHERE "+DBConfig.COLUMN_DAY_OF_WEEK+" = "+day+" AND "+DBConfig.COLUMN_ALARM_SCHEDULE_ID+" = "+scheduleID;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        alarm.setAlarmID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ALARM_ID))));
+        alarm.setDay(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_DAY_OF_WEEK))));
+        alarm.setScheduleID(cursor.getInt((cursor.getColumnIndex(DBConfig.COLUMN_ALARM_SCHEDULE_ID))));
+        return alarm;
     }
 
     // Get selected parents

@@ -1,6 +1,7 @@
 package team_10.example.coen390_ezcurtains;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 import team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper;
+import team_10.example.coen390_ezcurtains.Models.Alarm;
 import team_10.example.coen390_ezcurtains.Models.Device;
 import team_10.example.coen390_ezcurtains.Models.Schedule;
 
@@ -113,6 +115,7 @@ public class SetScheduleFragment extends DialogFragment {
                 schedule.setDaysOfTheWeek(fromWeekdayToInt(list));
                 if (dbHelper.insertSchedule(schedule) != -1) {
                     ((ScheduleActivity)getActivity()).loadList();
+                    createAlarm(schedule);
                     dismiss();
                     Toast.makeText(getActivity(), "Schedule saved successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -123,6 +126,41 @@ public class SetScheduleFragment extends DialogFragment {
             }
         });
         return view;
+    }
+
+    // Create alarms
+    public void createAlarm(Schedule schedule) {
+        Calendar alarmOpen = Calendar.getInstance();
+        Calendar alarmClose = Calendar.getInstance();
+        alarmOpen.setTimeInMillis(schedule.getOpenTime());
+        alarmClose.setTimeInMillis(schedule.getCloseTime());
+        List<Integer> days = schedule.getDaysOfTheWeek();
+        for(int i=0; i<days.size();i++) {
+            if(days.get(i) == 1) {
+                alarmOpen.set(Calendar.DAY_OF_WEEK, i+1);
+                alarmClose.set(Calendar.DAY_OF_WEEK, i+1);
+                // check if alarm is being set in the past
+                if(alarmOpen.getTimeInMillis() < System.currentTimeMillis())
+                    alarmOpen.set(Calendar.DATE, 7);
+
+                if(alarmClose.getTimeInMillis() < System.currentTimeMillis())
+                    alarmClose.set(Calendar.DATE, 7);
+            }
+
+            final int id_open = (int) System.currentTimeMillis(); // id used to set multiple alarms
+            final int id_close = (int) System.currentTimeMillis()+1; // id used to set multiple alarms
+            AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(getContext(), ScheduleReceiver.class);
+            PendingIntent pendingIntentOpen = PendingIntent.getBroadcast(getContext(), id_open, intent, PendingIntent.FLAG_IMMUTABLE);
+            PendingIntent pendingIntentClose = PendingIntent.getBroadcast(getContext(), id_close, intent, PendingIntent.FLAG_IMMUTABLE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmOpen.getTimeInMillis(), 7*24*60*60*1000, pendingIntentOpen);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmClose.getTimeInMillis(), 7*24*60*60*1000, pendingIntentClose);
+        }
+    }
+
+    // Delete alarm
+    public void deleteAlarm(Alarm alarm) {
+
     }
 
     // Initialize timepickers
@@ -180,19 +218,19 @@ public class SetScheduleFragment extends DialogFragment {
         List<Integer> daysOfTheWeek = new ArrayList<>(Collections.nCopies(7,0));
         for (MaterialDayPicker.Weekday weekday: list) {
             if (weekday == MaterialDayPicker.Weekday.MONDAY)
-                daysOfTheWeek.set(1, 1);
-            if (weekday == MaterialDayPicker.Weekday.TUESDAY)
-                daysOfTheWeek.set(2, 1);
-            if (weekday == MaterialDayPicker.Weekday.WEDNESDAY)
-                daysOfTheWeek.set(3, 1);
-            if (weekday == MaterialDayPicker.Weekday.THURSDAY)
-                daysOfTheWeek.set(4, 1);
-            if (weekday == MaterialDayPicker.Weekday.FRIDAY)
-                daysOfTheWeek.set(5, 1);
-            if (weekday == MaterialDayPicker.Weekday.SATURDAY)
-                daysOfTheWeek.set(6, 1);
-            if (weekday == MaterialDayPicker.Weekday.SUNDAY)
                 daysOfTheWeek.set(0, 1);
+            if (weekday == MaterialDayPicker.Weekday.TUESDAY)
+                daysOfTheWeek.set(1, 1);
+            if (weekday == MaterialDayPicker.Weekday.WEDNESDAY)
+                daysOfTheWeek.set(2, 1);
+            if (weekday == MaterialDayPicker.Weekday.THURSDAY)
+                daysOfTheWeek.set(3, 1);
+            if (weekday == MaterialDayPicker.Weekday.FRIDAY)
+                daysOfTheWeek.set(4, 1);
+            if (weekday == MaterialDayPicker.Weekday.SATURDAY)
+                daysOfTheWeek.set(5, 1);
+            if (weekday == MaterialDayPicker.Weekday.SUNDAY)
+                daysOfTheWeek.set(6, 1);
         }
         return daysOfTheWeek;
     }

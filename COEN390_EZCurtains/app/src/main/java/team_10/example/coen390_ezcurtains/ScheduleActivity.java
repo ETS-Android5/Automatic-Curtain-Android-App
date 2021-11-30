@@ -205,7 +205,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmOpen.getTimeInMillis(), 7*24*60*60*1000, pendingIntent);
             }
         }
-
     }
 
     @Override

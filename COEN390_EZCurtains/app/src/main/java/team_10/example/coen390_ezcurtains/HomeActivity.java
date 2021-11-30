@@ -2,6 +2,7 @@ package team_10.example.coen390_ezcurtains;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -58,16 +60,42 @@ public class HomeActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("lightSensor");
-        myRef.setValue("Upload Success!");
+        DatabaseReference motor = database.getReference("Motor_start");
+        //myRef.setValue("Upload Success!");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
+            boolean open = true;
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                int value = dataSnapshot.getValue(Integer.class);
+                //Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                if (value < 100 && open) {
+                    motor.setValue(1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            motor.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                    open = false;
+                }
+                else if (value > 800 && !open) {
+                    motor.setValue(-1);
+                    // run motor for 5 seconds
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            motor.setValue(0);
+                        }
+                    }, 5000); // change value to adjust time
+                    open = true;
+                }
             }
 
             @Override

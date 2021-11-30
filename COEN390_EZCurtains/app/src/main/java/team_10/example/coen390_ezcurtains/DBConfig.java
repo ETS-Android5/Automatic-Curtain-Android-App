@@ -8,6 +8,7 @@ public class DBConfig {
     public static final String TABLE_SCHEDULES = "Schedules";
     public static final String TABLE_SELECTED_PARENTS = "SelectedParents";
     public static final String TABLE_SELECTED_CHILDREN = "SelectedChildren";
+    public static final String TABLE_ALARMS = "Alarms";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_USERS_USERNAME = "Username";
     public static final String COLUMN_USERS_PASSWORD = "Password";
@@ -26,4 +27,7 @@ public class DBConfig {
     public static final String COLUMN_DEVICE_ID = "DeviceID";
     public static final String COLUMN_PARENT_ID = "ParentID";
     public static final String COLUMN_CHILD_ID = "ChildID";
+    public static final String COLUMN_ALARM_ID = "AlarmID";
+    public static final String COLUMN_DAY_OF_WEEK = "Day";
+    public static final String COLUMN_ALARM_SCHEDULE_ID = "ScheduleID";
 }

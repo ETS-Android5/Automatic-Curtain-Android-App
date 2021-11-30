@@ -168,12 +168,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     btnOpenCloseDevice.setText("Close");
                     dbHelper.insertSelectedChild(headerPosition, childPosition);
                     test.setValue(1);
+                    btnOpenCloseDevice.setClickable(false);
                     // run motor for 5 seconds
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             test.setValue(0);
+                            btnOpenCloseDevice.setClickable(true);
                         }
                     }, 5000); // change value to adjust time
                 }
@@ -182,12 +184,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     btnOpenCloseDevice.setText("Open");
                     dbHelper.removeSelectedChild(headerPosition, childPosition);
                     test.setValue(-1);
+                    btnOpenCloseDevice.setClickable(false);
                     // run motor for 5 seconds
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             test.setValue(0);
+                            btnOpenCloseDevice.setClickable(true);
                         }
                     }, 5000); // change value to adjust time
                 }
