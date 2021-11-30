@@ -65,10 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_ALARM_SCHEDULE_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_DAY_OF_WEEK+" INTEGER NOT NULL "+")");
 
-        // Create selected parent items table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_PARENTS+"( "
-                +DBConfig.COLUMN_PARENT_ID+" INTEGER PRIMARY KEY NOT NULL "+")");
-
         // Create selected children items table
         dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_CHILDREN+"( "
                 +DBConfig.COLUMN_PARENT_ID+" INTEGER NOT NULL, "
@@ -83,7 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_DEVICES);
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_ROOMS);
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SCHEDULES);
-        dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SELECTED_PARENTS);
         dB.execSQL("DROP TABLE IF EXISTS "+DBConfig.TABLE_SELECTED_CHILDREN);
         // Create new tables
         onCreate(dB);

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-small-v4/values-small-v4.xml",
+            "outputFile": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
             "map": [
                 {
-                    "source": "/Users/nicolas/.gradle/caches/transforms-3/8a7a06036e0c4f4e613a8bbc02ac21f5/transformed/material-1.4.0/res/values-small-v4/values-small-v4.xml",
+                    "source": "C:\\Users\\Nicolas\\.gradle\\caches\\transforms-3\\8a7a06036e0c4f4e613a8bbc02ac21f5\\transformed\\material-1.4.0\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
