@@ -42,16 +42,29 @@ public class InsertDeviceFragment extends DialogFragment {
             public void onClick(View view) {
                 String name = deviceName.getText().toString();
                 String room = roomName.getText().toString();
-                int scheduleID = 0;
 
                 if (!(name.equals("") || room.equals(""))) {
                     // Save in db
                     DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
-                    dbHelper.insertDevice(new Device(name, room));
-                    dbHelper.insertRoom(new Room(room));
-                    ((HomeActivity)getActivity()).loadList();
-                    dismiss();
-                    Toast.makeText(getActivity(), "Device saved successfully!", Toast.LENGTH_SHORT).show();
+                    // Check if room exists and device does not
+                    if(!dbHelper.checkDevice(name) && dbHelper.checkRoom(room)) {
+                        if(dbHelper.insertDevice(new Device(name, room)) != -1) {
+                            Toast.makeText(getActivity(), "Device saved successfully!", Toast.LENGTH_SHORT).show();
+                            ((HomeActivity)getActivity()).loadList();
+                            dismiss();
+                        }
+                    }
+                    // Check if room and device do not exist
+                    else if(!dbHelper.checkDevice(name) && !dbHelper.checkRoom(room)) {
+                        if (dbHelper.insertDevice(new Device(name, room)) != -1 && dbHelper.insertRoom(new Room(room)) != -1) {
+                            Toast.makeText(getActivity(), "Device saved successfully!", Toast.LENGTH_SHORT).show();
+                            ((HomeActivity) getActivity()).loadList();
+                            dismiss();
+                        }
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Device name already taken", Toast.LENGTH_SHORT).show();
+
                 }
                 else {
                     Toast.makeText(getActivity(), "Fill all fields", Toast.LENGTH_SHORT).show();

@@ -31,22 +31,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase dB) {
         // Create user table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_USERS+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_USERS+"( "
                 +DBConfig.COLUMN_USERS_USERNAME+" TEXT PRIMARY KEY NOT NULL,"
                 +DBConfig.COLUMN_USERS_PASSWORD+" TEXT NOT NULL "+")");
 
         // Create device table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_DEVICES+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_DEVICES+"( "
                 +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY NOT NULL, "
                 +DBConfig.COLUMN_DEVICES_NAME+" TEXT NOT NULL, "
                 +DBConfig.COLUMN_DEVICES_ROOM+" TEXT NOT NULL "+")");
 
         // Create room table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_ROOMS+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_ROOMS+"( "
                 +DBConfig.COLUMN_ROOMS_NAME+" TEXT PRIMARY KEY NOT NULL "+")");
 
         // Create schedule table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SCHEDULES+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_SCHEDULES+"( "
                 +DBConfig.COLUMN_ID+" INTEGER PRIMARY KEY NOT NULL, "
                 +DBConfig.COLUMN_DEVICE_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_SCHEDULES_OPEN+" INTEGER NOT NULL, "
@@ -60,13 +60,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +DBConfig.COLUMN_SCHEDULES_SUNDAY+" TEXT DEFAULT NULL "+")");
 
         // Create alarm table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_ALARMS+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_ALARMS+"( "
                 +DBConfig.COLUMN_ALARM_ID+" INTEGER PRIMARY KEY NOT NULL, "
                 +DBConfig.COLUMN_ALARM_SCHEDULE_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_DAY_OF_WEEK+" INTEGER NOT NULL "+")");
 
         // Create selected children items table
-        dB.execSQL("CREATE TABLE "+DBConfig.TABLE_SELECTED_CHILDREN+"( "
+        dB.execSQL("CREATE TABLE IF NOT EXISTS "+DBConfig.TABLE_SELECTED_CHILDREN+"( "
                 +DBConfig.COLUMN_PARENT_ID+" INTEGER NOT NULL, "
                 +DBConfig.COLUMN_CHILD_ID+" INTEGER NOT NULL ,"
                 +"PRIMARY KEY("+DBConfig.COLUMN_PARENT_ID+", "+DBConfig.COLUMN_CHILD_ID+")"+")");
@@ -92,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_USERS_PASSWORD, user.getPassword());
         // Insert row into user table
         id = dB.insert(DBConfig.TABLE_USERS, null, contentValues);
-        //dB.close();
+        dB.close();
         return id;
     }
 
@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
         // Insert row into user table
         id = dB.insert(DBConfig.TABLE_DEVICES, null, contentValues);
-        //dB.close();
+        dB.close();
         return id;
     }
 
@@ -128,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_ROOMS_NAME, room.getRoomName());
         // Insert row into room table
         id = db.insert(DBConfig.TABLE_ROOMS, null, contentValues);
-        //db.close();
+        db.close();
         return id;
     }
 
@@ -148,17 +148,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DBConfig.COLUMN_SCHEDULES_SUNDAY, schedule.getDaysOfTheWeek().get(6));
         // Insert row into schedule table
         id = db.insert(DBConfig.TABLE_SCHEDULES, null , contentValues);
-        //db.close();
-        return id;
-    }
-
-    public long insertSelectedParent(int headerPosition) {
-        long id = -1;
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DBConfig.COLUMN_PARENT_ID, headerPosition);
-        // Insert row into schedule table
-        id = db.insert(DBConfig.TABLE_SELECTED_PARENTS, null, contentValues);
         db.close();
         return id;
     }
@@ -175,6 +164,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public long updateDevice(Device device, int deviceID) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_DEVICES_NAME, device.getDeviceName());
+        contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
+        id = db.update(DBConfig.TABLE_DEVICES, contentValues, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        return id;
+    }
+
+    public long updateSchedule(Schedule schedule, int scheduleID) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBConfig.COLUMN_DEVICE_ID, schedule.getDeviceID());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_OPEN, schedule.getOpenTime());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_CLOSE, schedule.getCloseTime());
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_MONDAY, schedule.getDaysOfTheWeek().get(0));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_TUESDAY, schedule.getDaysOfTheWeek().get(1));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_WEDNESDAY, schedule.getDaysOfTheWeek().get(2));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_THURSDAY, schedule.getDaysOfTheWeek().get(3));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_FRIDAY, schedule.getDaysOfTheWeek().get(4));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_SATURDAY, schedule.getDaysOfTheWeek().get(5));
+        contentValues.put(DBConfig.COLUMN_SCHEDULES_SUNDAY, schedule.getDaysOfTheWeek().get(6));
+        id = db.update(DBConfig.TABLE_SCHEDULES, contentValues, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(scheduleID)});
+        return id;
+    }
+
+    public long removeDevice(int deviceID) {
+        long id = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        id = db.delete(DBConfig.TABLE_DEVICES, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        id = db.delete(DBConfig.TABLE_SCHEDULES, DBConfig.COLUMN_DEVICE_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        db.close();
+        return id;
+    }
+
     public long removeSchedule(int scheduleID) {
         long id = -1;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -183,26 +209,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public void removeSelectedParent(int headerPosition) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DBConfig.TABLE_SELECTED_PARENTS, DBConfig.COLUMN_PARENT_ID+" = ?", new String[]{Integer.toString(headerPosition)});
-        db.close();
-    }
-
     public void removeSelectedChild(int headerPosition, int childPosition) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DBConfig.TABLE_SELECTED_CHILDREN, DBConfig.COLUMN_PARENT_ID+" = ? AND "+DBConfig.COLUMN_CHILD_ID+"=?", new String[]{Integer.toString(headerPosition), Integer.toString(childPosition)});
         db.close();
-    }
-
-    public boolean checkSelectedParent(int headerPosition) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM "+DBConfig.TABLE_SELECTED_PARENTS
-                +" WHERE "+ DBConfig.COLUMN_PARENT_ID+" = "+headerPosition;
-        Cursor cursor = db.rawQuery(query, null);
-        boolean result = cursor.getCount() > 0;
-        db.close();
-        return result;
     }
 
     public boolean checkSelectedChild(int headerPosition, int childPosition) {
@@ -215,16 +225,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    // Check if device name already exists
+    public boolean checkDevice(String deviceName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT "+DBConfig.COLUMN_DEVICES_NAME
+                +" FROM "+DBConfig.TABLE_DEVICES
+                +" WHERE "+DBConfig.COLUMN_DEVICES_NAME+" = '"+deviceName+"'";
+        Cursor cursor = db.rawQuery(query, null);
+        boolean result = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return result;
+    }
+
     // Check if room name already exists
     public boolean checkRoom(String roomName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT "+DBConfig.COLUMN_ROOMS_NAME
                 +" FROM "+DBConfig.TABLE_ROOMS
-                +" WHERE "+ DBConfig.COLUMN_ROOMS_NAME+" = "+roomName;
+                +" WHERE "+DBConfig.COLUMN_ROOMS_NAME+" = '"+roomName+"'";
         Cursor cursor = db.rawQuery(query, null);
         boolean result = cursor.getCount() > 0;
         cursor.close();
-        //db.close();
+        db.close();
         return result;
     }
 

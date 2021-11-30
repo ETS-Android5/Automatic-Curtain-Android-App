@@ -115,7 +115,15 @@ public class ScheduleActivity extends AppCompatActivity {
         Schedule schedule = (Schedule) scheduleList.get(menuInfo.position);
         DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
         if(item.getItemId() == R.id.edit) {
-            Toast.makeText(this, "edit "+schedule.getScheduleID(), Toast.LENGTH_SHORT).show();
+            SetScheduleFragment fragment = new SetScheduleFragment();
+            // Pass device data to set schedule fragment
+            Gson gson = new Gson();
+            Bundle bundle = new Bundle();
+            bundle.putString("device", gson.toJson(device));
+            fragment.setArguments(bundle);
+            fragment.show(getSupportFragmentManager(), "set_schedule");
+            loadList();
+            Toast.makeText(this, "Successfully edited schedule"+schedule.getScheduleID(), Toast.LENGTH_SHORT).show();
             loadList();
             return true;
         }

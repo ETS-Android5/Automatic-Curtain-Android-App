@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\merged_res\\debug\\layout_toolbar_layout.xml.flat",
         "source": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\src\\main\\res\\layout\\toolbar_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\Nicolas\\AndroidStudioProjects\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\merged_res\\debug\\layout_schedule_layout.xml.flat",
