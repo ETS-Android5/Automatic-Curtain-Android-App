@@ -41,9 +41,8 @@
             android:layout_marginStart="27dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="12:00 AM"
-            android:textSize="18sp"
-            android:visibility="invisible" />
+            android:text=""
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_close_time"
@@ -53,9 +52,8 @@
             android:layout_marginStart="164dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="12:00 AM"
-            android:textSize="18sp"
-            android:visibility="invisible" />
+            android:text=""
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/set_open_time"

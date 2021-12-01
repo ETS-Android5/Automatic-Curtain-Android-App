@@ -57,14 +57,14 @@ public class ListAdapter extends ArrayAdapter<Schedule> {
 
         if (hour > 12) {
             hour -= 12;
-            am_pm = "AM";
+            am_pm = "PM";
         } else if (hour == 0) {
             hour += 12;
-            am_pm = "PM";
-        } else if (hour == 12) {
             am_pm = "AM";
-        } else {
+        } else if (hour == 12) {
             am_pm = "PM";
+        } else {
+            am_pm = "AM";
         }
 
         if (minute < 10) {

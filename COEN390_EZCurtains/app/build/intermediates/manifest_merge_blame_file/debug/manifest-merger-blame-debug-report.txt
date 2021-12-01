@@ -6,120 +6,120 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
-8-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml
+8-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml
+9-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml
 10
 11    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-11-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:4:5-77
-11-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:4:22-75
+11-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:4:5-77
+11-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:4:22-75
 12
 13    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
 14    <!-- <uses-sdk android:minSdkVersion="14"/> -->
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:25:5-79
-15-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:25:22-76
+15-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:25:5-79
+15-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:25:22-76
 16    <uses-permission android:name="android.permission.INTERNET" />
-16-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:26:5-67
-16-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:26:22-64
+16-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:26:5-67
+16-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:26:22-64
 17
 18    <application
-18-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:6:5-30:19
+18-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:6:5-30:19
 19        android:allowBackup="false"
-19-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:7:9-36
+19-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:7:9-36
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.5.0] C:\Users\benma\.gradle\caches\transforms-3\4b18baa9266eba5441dc9be7b537a834\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.5.0] /Users/nicolas/.gradle/caches/transforms-3/4b18baa9266eba5441dc9be7b537a834/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:extractNativeLibs="false"
 23        android:icon="@mipmap/ic_launcher"
-23-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:8:9-43
+23-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:8:9-43
 24        android:label="@string/app_name"
-24-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:9:9-41
+24-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:9:9-41
 25        android:roundIcon="@mipmap/ic_launcher_round"
-25-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:10:9-54
+25-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:10:9-54
 26        android:supportsRtl="true"
-26-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:11:9-35
+26-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:11:9-35
 27        android:testOnly="true"
 28        android:theme="@style/Theme.COEN390_EZCurtains" >
-28-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:12:9-56
+28-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:12:9-56
 29        <activity
-29-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:13:9-16:39
+29-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:13:9-16:39
 30            android:name="team_10.example.coen390_ezcurtains.HomeActivity"
-30-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:14:13-41
+30-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:14:13-41
 31            android:exported="true"
-31-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:16:13-36
+31-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:16:13-36
 32            android:parentActivityName="team_10.example.coen390_ezcurtains.Login_Activity" />
-32-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:15:13-57
+32-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:15:13-57
 33        <activity
-33-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:17:9-20:58
+33-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:17:9-20:58
 34            android:name="team_10.example.coen390_ezcurtains.ScheduleActivity"
-34-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:18:13-45
+34-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:18:13-45
 35            android:exported="true"
-35-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:19:13-36
+35-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:19:13-36
 36            android:parentActivityName="team_10.example.coen390_ezcurtains.HomeActivity" />
-36-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:20:13-55
+36-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:20:13-55
 37        <activity
-37-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:21:9-29:20
+37-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:21:9-29:20
 38            android:name="team_10.example.coen390_ezcurtains.Login_Activity"
-38-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:22:13-43
+38-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:22:13-43
 39            android:exported="true" >
-39-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:23:13-36
+39-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:23:13-36
 40            <intent-filter>
-40-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:24:13-28:29
+40-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:24:13-28:29
 41                <action android:name="android.intent.action.MAIN" />
-41-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:25:17-69
-41-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:25:25-66
+41-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:25:17-69
+41-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:25:25-66
 42
 43                <category android:name="android.intent.category.LAUNCHER" />
-43-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:27:17-77
-43-->C:\Users\benma\OneDrive - Concordia University - Canada\Documents\GitHub\COEN390Project\COEN390_EZCurtains\app\src\main\AndroidManifest.xml:27:27-74
+43-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:27:17-77
+43-->/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/AndroidManifest.xml:27:27-74
 44            </intent-filter>
 45        </activity>
 46
 47        <service
-47-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:29:9-35:19
+47-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:29:9-35:19
 48            android:name="com.google.firebase.components.ComponentDiscoveryService"
-48-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:30:13-84
+48-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:30:13-84
 49            android:directBootAware="true"
-49-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+49-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
 50            android:exported="false" >
-50-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:31:13-37
+50-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:31:13-37
 51            <meta-data
-51-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:32:13-34:85
+51-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:32:13-34:85
 52                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-52-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:33:17-109
+52-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:33:17-109
 53                android:value="com.google.firebase.components.ComponentRegistrar" />
-53-->[com.google.firebase:firebase-database:20.0.2] C:\Users\benma\.gradle\caches\transforms-3\6df2497b371575efde943d8fc11fc0d6\transformed\jetified-firebase-database-20.0.2\AndroidManifest.xml:34:17-82
+53-->[com.google.firebase:firebase-database:20.0.2] /Users/nicolas/.gradle/caches/transforms-3/6df2497b371575efde943d8fc11fc0d6/transformed/jetified-firebase-database-20.0.2/AndroidManifest.xml:34:17-82
 54        </service>
 55
 56        <provider
-56-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+56-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
 57            android:name="com.google.firebase.provider.FirebaseInitProvider"
-57-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+57-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
 58            android:authorities="team_10.example.coen390_ezcurtains.firebaseinitprovider"
-58-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+58-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
 59            android:directBootAware="true"
-59-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+59-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
 60            android:exported="false"
-60-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+60-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
 61            android:initOrder="100" />
-61-->[com.google.firebase:firebase-common:20.0.0] C:\Users\benma\.gradle\caches\transforms-3\45b4a080f8d120803c4464eae4da744b\transformed\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+61-->[com.google.firebase:firebase-common:20.0.0] /Users/nicolas/.gradle/caches/transforms-3/45b4a080f8d120803c4464eae4da744b/transformed/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
 62
 63        <activity
-63-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\benma\.gradle\caches\transforms-3\61327252b97b04f60e697e9245a0fce3\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+63-->[com.google.android.gms:play-services-base:17.1.0] /Users/nicolas/.gradle/caches/transforms-3/61327252b97b04f60e697e9245a0fce3/transformed/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
 64            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-64-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\benma\.gradle\caches\transforms-3\61327252b97b04f60e697e9245a0fce3\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+64-->[com.google.android.gms:play-services-base:17.1.0] /Users/nicolas/.gradle/caches/transforms-3/61327252b97b04f60e697e9245a0fce3/transformed/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
 65            android:exported="false"
-65-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\benma\.gradle\caches\transforms-3\61327252b97b04f60e697e9245a0fce3\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+65-->[com.google.android.gms:play-services-base:17.1.0] /Users/nicolas/.gradle/caches/transforms-3/61327252b97b04f60e697e9245a0fce3/transformed/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
 66            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-66-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\benma\.gradle\caches\transforms-3\61327252b97b04f60e697e9245a0fce3\transformed\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+66-->[com.google.android.gms:play-services-base:17.1.0] /Users/nicolas/.gradle/caches/transforms-3/61327252b97b04f60e697e9245a0fce3/transformed/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
 67
 68        <meta-data
-68-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\benma\.gradle\caches\transforms-3\e0a06e1db4d4e2db64a90134643f665b\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+68-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nicolas/.gradle/caches/transforms-3/e0a06e1db4d4e2db64a90134643f665b/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 69            android:name="com.google.android.gms.version"
-69-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\benma\.gradle\caches\transforms-3\e0a06e1db4d4e2db64a90134643f665b\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+69-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nicolas/.gradle/caches/transforms-3/e0a06e1db4d4e2db64a90134643f665b/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
 70            android:value="@integer/google_play_services_version" />
-70-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\benma\.gradle\caches\transforms-3\e0a06e1db4d4e2db64a90134643f665b\transformed\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+70-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nicolas/.gradle/caches/transforms-3/e0a06e1db4d4e2db64a90134643f665b/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
 71    </application>
 72
 73</manifest>
