@@ -1,16 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w600dp-v13/values-w600dp-v13.xml",
+            "outputFile": "C:\\Users\\benma\\OneDrive - Concordia University - Canada\\Documents\\GitHub\\COEN390Project\\COEN390_EZCurtains\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/nicolas/AndroidStudioProjects/COEN390Project/COEN390_EZCurtains/app/src/main/res/values-w600dp/dimens.xml",
+                    "source": "C:\\Users\\benma\\OneDrive - Concordia University - Canada\\Documents\\GitHub\\COEN390Project\\COEN390_EZCurtains\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "1",
-                        "startOffsets": "13",
+                        "startOffsets": "14",
                         "endColumns": "54",
-                        "endOffsets": "66"
+                        "endOffsets": "67"
                     },
                     "to": {
                         "startLines": "2",

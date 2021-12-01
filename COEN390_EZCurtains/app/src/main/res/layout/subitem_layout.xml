@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#E8FAF0E2"
     android:padding="5dp">
 
     <TextView
@@ -16,12 +17,13 @@
     <Button
         android:id="@+id/btn_open_close"
         android:layout_width="83dp"
-        android:layout_toEndOf="@+id/text_device_name"
         android:layout_height="45dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="49dp"
+        android:layout_toEndOf="@+id/text_device_name"
         android:backgroundTint="@color/pomegranate"
         android:focusable="false"
-        android:text="Open" />
+        android:text="Open"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>
