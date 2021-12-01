@@ -117,14 +117,13 @@ public class ScheduleActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.edit) {
             SetScheduleFragment fragment = new SetScheduleFragment();
             // Pass device data to set schedule fragment
-            Gson gson = new Gson();
+            Gson gson_device = new Gson();
+            Gson gson_schedule = new Gson();
             Bundle bundle = new Bundle();
-            bundle.putString("device", gson.toJson(device));
+            bundle.putString("device", gson_device.toJson(device));
+            bundle.putString("schedule", gson_schedule.toJson(schedule));
             fragment.setArguments(bundle);
-            fragment.show(getSupportFragmentManager(), "set_schedule");
-            loadList();
-            Toast.makeText(this, "Successfully edited schedule"+schedule.getScheduleID(), Toast.LENGTH_SHORT).show();
-            loadList();
+            fragment.show(getSupportFragmentManager(), "edit_schedule");
             return true;
         }
         else if(item.getItemId() == R.id.delete) {

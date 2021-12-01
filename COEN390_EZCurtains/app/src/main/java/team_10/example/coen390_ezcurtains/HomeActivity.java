@@ -6,7 +6,10 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -123,12 +126,44 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                registerForContextMenu(expandableListView);
+                return false;
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         loadList();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
+        if(item.getItemId() == R.id.edit) {
+            loadList();
+            Toast.makeText(this, "Successfully edited schedule", Toast.LENGTH_SHORT).show();
+            loadList();
+            return true;
+        }
+        else if(item.getItemId() == R.id.delete) {
+                Toast.makeText(this, "Successfully deleted schedule", Toast.LENGTH_SHORT).show();
+            loadList();
+            return true;
+        }
+        else
+            return super.onContextItemSelected(item);
     }
 
     // Add device

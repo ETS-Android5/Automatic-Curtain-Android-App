@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 import team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper;
@@ -36,6 +37,7 @@ public class SetScheduleFragment extends DialogFragment {
     protected MaterialTimePicker timepickerOpen, timepickerClose;
     protected MaterialDayPicker dayPicker;
     protected Device device;
+    protected Schedule schedule_edit;
 
     public SetScheduleFragment() {
         // Required empty public constructor
@@ -49,8 +51,10 @@ public class SetScheduleFragment extends DialogFragment {
         // Retrieve device data from schedule activity
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            Gson gson = new Gson();
-            device = gson.fromJson(bundle.getString("device"), Device.class);
+            Gson gson_device = new Gson();
+            Gson gson_schedule = new Gson();
+            device = gson_device.fromJson(bundle.getString("device"), Device.class);
+            schedule_edit = gson_schedule.fromJson(bundle.getString("schedule"), Schedule.class);
         }
         createTimePickers();
         deviceName = view.findViewById(R.id.text_device_name);
@@ -65,6 +69,7 @@ public class SetScheduleFragment extends DialogFragment {
 
         deviceName.setText(device.getDeviceName());
         roomName.setText(device.getRoomName());
+        Boolean toEdit = loadFragment(getTag());
 
         btn_setOpenTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +80,6 @@ public class SetScheduleFragment extends DialogFragment {
                     public void onClick(View view) {
                         // Display time to open time textview
                         openTime.setText(timeString(timepickerOpen, timepickerOpen.getHour(), timepickerOpen.getMinute()));
-                        openTime.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -90,7 +94,6 @@ public class SetScheduleFragment extends DialogFragment {
                     public void onClick(View view) {
                         // Display time to close time textview
                         closeTime.setText(timeString(timepickerClose, timepickerClose.getHour(), timepickerClose.getMinute()));
-                        closeTime.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -105,8 +108,26 @@ public class SetScheduleFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
-                Calendar open = setCalendar(timepickerOpen.getHour(), timepickerOpen.getMinute());
-                Calendar close = setCalendar(timepickerClose.getHour(), timepickerClose.getMinute());
+                Calendar open = Calendar.getInstance();
+                Calendar close = Calendar.getInstance();
+                if(toEdit) {
+                    if(checkTime(openTime.getText().toString(), schedule_edit.getOpenTime())) {
+                        open.setTimeInMillis(schedule_edit.getOpenTime());
+                    }
+                    else
+                        open = setCalendar(timepickerOpen.getHour(), timepickerOpen.getMinute());
+
+                    if(checkTime(closeTime.getText().toString(), schedule_edit.getCloseTime())) {
+                        close.setTimeInMillis(schedule_edit.getCloseTime());
+                    }
+                    else
+                        close = setCalendar(timepickerClose.getHour(), timepickerClose.getMinute());
+
+                }
+                else {
+                    open = setCalendar(timepickerOpen.getHour(), timepickerOpen.getMinute());
+                    close = setCalendar(timepickerClose.getHour(), timepickerClose.getMinute());
+                }
                 Schedule schedule = new Schedule();
                 List<MaterialDayPicker.Weekday> list = dayPicker.getSelectedDays();
                 schedule.setOpenTime(open.getTimeInMillis());
@@ -116,9 +137,18 @@ public class SetScheduleFragment extends DialogFragment {
                 if(openTime.getText().toString().isEmpty() || closeTime.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Set open and close time", Toast.LENGTH_SHORT).show();
                 }
+                else if (toEdit) {
+                    if (dbHelper.updateSchedule(schedule, schedule_edit.getScheduleID()) != -1) {
+                        ((ScheduleActivity)getActivity()).loadList();
+                        dismiss();
+                        Toast.makeText(getActivity(), "Successfully edited schedule", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
                 else if (dbHelper.insertSchedule(schedule) != -1) {
                     ((ScheduleActivity)getActivity()).loadList();
-                    createAlarm(schedule);
+                    //createAlarm(schedule);
                     dismiss();
                     Toast.makeText(getActivity(), "Schedule saved successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -129,6 +159,25 @@ public class SetScheduleFragment extends DialogFragment {
             }
         });
         return view;
+    }
+
+    // Load fragment on edit
+    public boolean loadFragment(String tag) {
+        if(tag.equals("edit_schedule")) {
+            openTime.setText(timeString(schedule_edit.getOpenTime()));
+            closeTime.setText(timeString(schedule_edit.getCloseTime()));
+            dayPicker.setSelectedDays(fromIntToWeekday(schedule_edit.getDaysOfTheWeek()));
+            return true;
+        }
+        else
+            return false;
+    }
+
+    // Check if a time has been selected on edit
+    // time String is of format ## : ## AM
+    public boolean checkTime(String time, Long timeInMillis) {
+        String timeStored = timeString(timeInMillis);
+        return time.equals(timeStored);
     }
 
     // Create alarms
@@ -207,6 +256,38 @@ public class SetScheduleFragment extends DialogFragment {
         return timeString;
     }
 
+    // Format selected time into a string to be displayed in 12 hour format
+    public String timeString(long timeInMillis) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(timeInMillis);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        String min = null;
+        String am_pm = null;
+        String timeString = null;
+
+        if (hour > 12) {
+            hour -= 12;
+            am_pm = "AM";
+        } else if (hour == 0) {
+            hour += 12;
+            am_pm = "PM";
+        } else if (hour == 12) {
+            am_pm = "AM";
+        } else {
+            am_pm = "PM";
+        }
+
+        if (minute < 10) {
+            min = "0" + minute;
+        } else {
+            min = String.valueOf(minute);
+        }
+
+        timeString = hour + " : " + min + " " + am_pm;
+        return timeString;
+    }
+
     // Create Calendar object for selected times
     public Calendar setCalendar(int hour, int min) {
         Calendar c = Calendar.getInstance();
@@ -236,5 +317,43 @@ public class SetScheduleFragment extends DialogFragment {
                 daysOfTheWeek.set(6, 1);
         }
         return daysOfTheWeek;
+    }
+
+    // Create list of Weekdays object from list of int weekdays
+    public List<MaterialDayPicker.Weekday> fromIntToWeekday(List<Integer> list) {
+        List<MaterialDayPicker.Weekday> weekdays = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++) {
+            switch(i) {
+                case 0:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.MONDAY);
+                    break;
+                case 1:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.TUESDAY);
+                    break;
+                case 2:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.WEDNESDAY);
+                    break;
+                case 3:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.THURSDAY);
+                    break;
+                case 4:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.FRIDAY);
+                    break;
+                case 5:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.SATURDAY);
+                    break;
+                case 6:
+                    if(list.get(i) == 1)
+                        weekdays.add(MaterialDayPicker.Weekday.SUNDAY);
+                    break;
+            }
+        }
+        return weekdays;
     }
 }

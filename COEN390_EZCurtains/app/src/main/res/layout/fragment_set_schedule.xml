@@ -37,20 +37,18 @@
             android:layout_below="@+id/set_open_time"
             android:layout_marginStart="49dp"
             android:gravity="center"
-            android:text="12 : 00 AM"
-            android:textSize="18sp"
-            android:visibility="invisible" />
+            android:text=""
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_close_time"
             android:layout_width="67dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/set_open_time"
-            android:gravity="center"
             android:layout_marginStart="184dp"
-            android:textSize="18sp"
-            android:visibility="invisible"
-            android:text="12 : 00 AM"/>
+            android:gravity="center"
+            android:text=""
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/set_open_time"
