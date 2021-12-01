@@ -6,25 +6,17 @@ team_10/example/coen390_ezcurtains/Models/User.java
  team_10.example.coen390_ezcurtains.Models.User
 team_10/example/coen390_ezcurtains/Models/Device.java
  team_10.example.coen390_ezcurtains.Models.Device
-team_10/example/coen390_ezcurtains/ListAdapter.java
- team_10.example.coen390_ezcurtains.ListAdapter
+team_10/example/coen390_ezcurtains/HomeActivity.java
+ team_10.example.coen390_ezcurtains.HomeActivity
+ team_10.example.coen390_ezcurtains.HomeActivity$1
+ team_10.example.coen390_ezcurtains.HomeActivity$1$1
+ team_10.example.coen390_ezcurtains.HomeActivity$1$2
+ team_10.example.coen390_ezcurtains.HomeActivity$2
+ team_10.example.coen390_ezcurtains.HomeActivity$3
 team_10/example/coen390_ezcurtains/DBConfig.java
  team_10.example.coen390_ezcurtains.DBConfig
 team_10/example/coen390_ezcurtains/Controllers/SqlLiteUserAdapter.java
  team_10.example.coen390_ezcurtains.Controllers.SqlLiteUserAdapter
-team_10/example/coen390_ezcurtains/Login_Activity.java
- team_10.example.coen390_ezcurtains.Login_Activity
- team_10.example.coen390_ezcurtains.Login_Activity$1
-team_10/example/coen390_ezcurtains/ScheduleReceiver.java
- team_10.example.coen390_ezcurtains.ScheduleReceiver
- team_10.example.coen390_ezcurtains.ScheduleReceiver$1
- team_10.example.coen390_ezcurtains.ScheduleReceiver$2
-team_10/example/coen390_ezcurtains/Models/Room.java
- team_10.example.coen390_ezcurtains.Models.Room
-team_10/example/coen390_ezcurtains/BuildConfig.java
- team_10.example.coen390_ezcurtains.BuildConfig
-team_10/example/coen390_ezcurtains/Controllers/DatabaseHelper.java
- team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper
 team_10/example/coen390_ezcurtains/SetScheduleFragment.java
  team_10.example.coen390_ezcurtains.SetScheduleFragment
  team_10.example.coen390_ezcurtains.SetScheduleFragment$1
@@ -33,6 +25,19 @@ team_10/example/coen390_ezcurtains/SetScheduleFragment.java
  team_10.example.coen390_ezcurtains.SetScheduleFragment$2$1
  team_10.example.coen390_ezcurtains.SetScheduleFragment$3
  team_10.example.coen390_ezcurtains.SetScheduleFragment$4
+team_10/example/coen390_ezcurtains/Controllers/DatabaseHelper.java
+ team_10.example.coen390_ezcurtains.Controllers.DatabaseHelper
+team_10/example/coen390_ezcurtains/Models/Room.java
+ team_10.example.coen390_ezcurtains.Models.Room
+team_10/example/coen390_ezcurtains/BuildConfig.java
+ team_10.example.coen390_ezcurtains.BuildConfig
+team_10/example/coen390_ezcurtains/ScheduleReceiver.java
+ team_10.example.coen390_ezcurtains.ScheduleReceiver
+ team_10.example.coen390_ezcurtains.ScheduleReceiver$1
+ team_10.example.coen390_ezcurtains.ScheduleReceiver$2
+team_10/example/coen390_ezcurtains/Login_Activity.java
+ team_10.example.coen390_ezcurtains.Login_Activity
+ team_10.example.coen390_ezcurtains.Login_Activity$1
 team_10/example/coen390_ezcurtains/ScheduleActivity.java
  team_10.example.coen390_ezcurtains.ScheduleActivity
  team_10.example.coen390_ezcurtains.ScheduleActivity$1
@@ -43,13 +48,8 @@ team_10/example/coen390_ezcurtains/ExpandableListAdapter.java
  team_10.example.coen390_ezcurtains.ExpandableListAdapter$1
  team_10.example.coen390_ezcurtains.ExpandableListAdapter$1$1
  team_10.example.coen390_ezcurtains.ExpandableListAdapter$1$2
-team_10/example/coen390_ezcurtains/HomeActivity.java
- team_10.example.coen390_ezcurtains.HomeActivity
- team_10.example.coen390_ezcurtains.HomeActivity$1
- team_10.example.coen390_ezcurtains.HomeActivity$1$1
- team_10.example.coen390_ezcurtains.HomeActivity$1$2
- team_10.example.coen390_ezcurtains.HomeActivity$2
- team_10.example.coen390_ezcurtains.HomeActivity$3
+team_10/example/coen390_ezcurtains/ListAdapter.java
+ team_10.example.coen390_ezcurtains.ListAdapter
 team_10/example/coen390_ezcurtains/InsertDeviceFragment.java
  team_10.example.coen390_ezcurtains.InsertDeviceFragment
  team_10.example.coen390_ezcurtains.InsertDeviceFragment$1

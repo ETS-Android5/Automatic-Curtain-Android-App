@@ -9,15 +9,16 @@
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:background="@color/white">
+        android:background="#E8FAF0E2">
 
         <TextView
             android:id="@+id/text_device_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="17dp"
             android:text="Device Name"
+            android:textColor="@color/orange"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -25,32 +26,36 @@
             android:id="@+id/text_room_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/text_device_name"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:text="Room Name"
-            android:textStyle="italic"
-            android:layout_below="@+id/text_device_name"/>
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_open_time"
-            android:layout_width="67dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/set_open_time"
-            android:layout_marginStart="49dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="12 : 00 AM"
+            android:text="12:00 AM"
             android:textSize="18sp"
             android:visibility="invisible" />
 
         <TextView
             android:id="@+id/text_close_time"
-            android:layout_width="67dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/set_open_time"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:layout_marginStart="184dp"
+            android:text="12:00 AM"
             android:textSize="18sp"
-            android:visibility="invisible"
-            android:text="12 : 00 AM"/>
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/set_open_time"
@@ -58,10 +63,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="100dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/orange"
             android:elevation="4dp"
             android:text="Set open time"
-            android:textColor="@color/black"
+            android:textColor="@color/dayDeselected"
             app:cornerRadius="5dp" />
 
         <Button
@@ -70,10 +75,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="100dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/orange"
             android:elevation="4dp"
             android:text="Set close time"
-            android:textColor="@color/black"
+            android:textColor="@color/dayDeselected"
             app:cornerRadius="5dp" />
 
         <ca.antonious.materialdaypicker.MaterialDayPicker
@@ -82,30 +87,32 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="250dp"
-            android:scaleX="0.9"
-            android:scaleY="0.9" />
+            android:background="#FAF0E2"
+            android:scaleX="1"
+            android:scaleY="1" />
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="149dp"
+            android:layout_width="139dp"
             android:layout_height="55dp"
-            android:layout_marginTop="345dp"
-            android:backgroundTint="@color/white"
+            android:layout_marginTop="325dp"
+            android:layout_marginStart="5dp"
+            android:backgroundTint="@color/orange"
             android:elevation="4dp"
             android:text="SAVE"
-            android:textColor="@color/black"
+            android:textColor="@color/dayDeselected"
             app:cornerRadius="0dp" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="149dp"
+            android:layout_width="139dp"
             android:layout_height="55dp"
-            android:layout_marginStart="151dp"
-            android:layout_marginTop="345dp"
-            android:backgroundTint="@color/white"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="325dp"
+            android:backgroundTint="@color/orange"
             android:elevation="4dp"
             android:text="CANCEL"
-            android:textColor="@color/black"
+            android:textColor="@color/dayDeselected"
             app:cornerRadius="0dp" />
 
     </RelativeLayout>

@@ -12,17 +12,20 @@
     <Button
         android:id="@+id/btn_add_device"
         android:layout_width="wrap_content"
-        android:layout_marginTop="650dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="650dp"
         android:backgroundTint="@color/pomegranate"
         android:text="add device"
-        android:textSize="16sp"/>
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
     <ExpandableListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"/>
+        android:layout_below="@id/toolbar"
+        android:background="#BFF8D3AC"
+        android:cacheColorHint="@color/daySelected" />
 
 </RelativeLayout>
