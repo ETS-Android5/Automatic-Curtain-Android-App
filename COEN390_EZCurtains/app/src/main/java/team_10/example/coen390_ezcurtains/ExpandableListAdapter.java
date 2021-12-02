@@ -120,7 +120,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 // OPEN
                 if (!dbHelper.checkSelectedChild(headerPosition, childPosition)) {
                     btnOpenCloseDevice.setText("Close");
-                    dbHelper.insertSelectedChild(headerPosition, childPosition);
                     test.setValue(1);
                     btnOpenCloseDevice.setClickable(false);
                     // run motor for 5 seconds
@@ -130,13 +129,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                         public void run() {
                             test.setValue(0);
                             btnOpenCloseDevice.setClickable(true);
+                            dbHelper.insertSelectedChild(headerPosition, childPosition);
                         }
                     }, 5000); // change value to adjust time
                 }
                 // CLOSE
                 else {
                     btnOpenCloseDevice.setText("Open");
-                    dbHelper.removeSelectedChild(headerPosition, childPosition);
                     test.setValue(-1);
                     btnOpenCloseDevice.setClickable(false);
                     // run motor for 5 seconds
@@ -146,6 +145,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                         public void run() {
                             test.setValue(0);
                             btnOpenCloseDevice.setClickable(true);
+                            dbHelper.removeSelectedChild(headerPosition, childPosition);
                         }
                     }, 5000); // change value to adjust time
                 }

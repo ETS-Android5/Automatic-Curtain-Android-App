@@ -164,15 +164,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public long updateDevice(Device device, int deviceID) {
-        long id = -1;
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DBConfig.COLUMN_DEVICES_NAME, device.getDeviceName());
-        contentValues.put(DBConfig.COLUMN_DEVICES_ROOM, device.getRoomName());
-        id = db.update(DBConfig.TABLE_DEVICES, contentValues, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(deviceID)});
-        return id;
-    }
 
     public long updateSchedule(Schedule schedule, int scheduleID) {
         long id = -1;
@@ -192,13 +183,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public long removeDevice(int deviceID) {
-        long id = -1;
+    public void removeRoom(String roomName, List<Device>devices) {
         SQLiteDatabase db = this.getWritableDatabase();
-        id = db.delete(DBConfig.TABLE_DEVICES, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(deviceID)});
-        id = db.delete(DBConfig.TABLE_SCHEDULES, DBConfig.COLUMN_DEVICE_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        db.delete(DBConfig.TABLE_DEVICES, DBConfig.COLUMN_DEVICES_ROOM+" = ?", new String[]{roomName});
+        db.delete(DBConfig.TABLE_ROOMS, DBConfig.COLUMN_ROOMS_NAME+" = ?", new String[]{roomName});
+        for(Device device:devices){
+            db.delete(DBConfig.TABLE_SCHEDULES, DBConfig.COLUMN_DEVICE_ID+" = ?", new String[]{Integer.toString(device.getDeviceID())});
+        }
+    }
+
+    public ArrayList<Long> removeDevice(int deviceID) {
+        long id1 = -1;
+        long id2 = -1;
+        ArrayList<Long> long_list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        id1 = db.delete(DBConfig.TABLE_DEVICES, DBConfig.COLUMN_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        id2 = db.delete(DBConfig.TABLE_SCHEDULES, DBConfig.COLUMN_DEVICE_ID+" = ?", new String[]{Integer.toString(deviceID)});
+        long_list.add(id1);
+        long_list.add(id2);
         db.close();
-        return id;
+        return long_list;
     }
 
     public long removeSchedule(int scheduleID) {

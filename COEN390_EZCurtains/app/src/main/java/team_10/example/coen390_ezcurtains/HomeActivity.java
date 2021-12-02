@@ -65,40 +65,42 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("lightSensor");
         DatabaseReference motor = database.getReference("Motor_start");
-        //myRef.setValue("Upload Success!");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
-            boolean open = true;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 int value = dataSnapshot.getValue(Integer.class);
-                //Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
-                if (value < 100 && open) {
+                DatabaseHelper dbHelper = new DatabaseHelper((getBaseContext()));
+                if (value < 100 && !dbHelper.checkSelectedChild(0,0)) {
+                    expandableListView.collapseGroup(0);
                     motor.setValue(1);
-                    // run motor for 5 seconds
+                    // run motor for 6 seconds
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             motor.setValue(0);
+                            dbHelper.insertSelectedChild(0,0);
                         }
-                    }, 5000); // change value to adjust time
-                    open = false;
+                    }, 6000); // change value to adjust time
+
                 }
-                else if (value > 800 && !open) {
+                else if (value > 800 && dbHelper.checkSelectedChild(0,0)) {
                     motor.setValue(-1);
-                    // run motor for 5 seconds
+                    expandableListView.collapseGroup(0);
+                    // run motor for 6 seconds
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             motor.setValue(0);
+                            dbHelper.removeSelectedChild(0,0);
                         }
-                    }, 5000); // change value to adjust time
-                    open = true;
+                    }, 6000); // change value to adjust time
+
                 }
             }
 
@@ -146,20 +148,30 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.context_menu, menu);
+        getMenuInflater().inflate(R.menu.device_room_context_menu, menu);
     }
 
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo)item.getMenuInfo();
         DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
-        if(item.getItemId() == R.id.edit) {
-            loadList();
-            Toast.makeText(this, "Successfully edited schedule", Toast.LENGTH_SHORT).show();
-            loadList();
-            return true;
-        }
-        else if(item.getItemId() == R.id.delete) {
-                Toast.makeText(this, "Successfully deleted schedule", Toast.LENGTH_SHORT).show();
+        if(item.getItemId() == R.id.delete) {
+            if (ExpandableListView.getPackedPositionType(info.packedPosition) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                long id = -1;
+                int groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+                int childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
+                Device device = list_devices.get(list_room_names.get(groupPos).getRoomName()).get(childPos);
+                List<Device> deviceList = list_devices.get(list_room_names.get(groupPos).getRoomName());
+                if (deviceList.size() == 1) {
+                    dbHelper.removeRoom(device.getRoomName(), deviceList);
+                }
+                else if (!dbHelper.removeDevice(device.getDeviceID()).contains(id)) {
+                    Toast.makeText(this, "Successfully deleted device", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else if (ExpandableListView.getPackedPositionType(info.packedPosition) == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+                Room room = list_room_names.get(ExpandableListView.getPackedPositionGroup(info.packedPosition));
+                dbHelper.removeRoom(room.getRoomName(), list_devices.get(room.getRoomName()));
+            }
             loadList();
             return true;
         }

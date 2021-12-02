@@ -14,6 +14,7 @@ public class DBConfig {
     public static final String COLUMN_USERS_PASSWORD = "Password";
     public static final String COLUMN_DEVICES_NAME = "DeviceName";
     public static final String COLUMN_DEVICES_ROOM = "Room";
+    public static final String COLUMN_DEVICES_STATE = "State";
     public static final String COLUMN_ROOMS_NAME = "RoomName";
     public static final String COLUMN_SCHEDULES_OPEN = "OpenTime";
     public static final String COLUMN_SCHEDULES_CLOSE = "CloseTime";

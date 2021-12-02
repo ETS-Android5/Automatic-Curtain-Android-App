@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
@@ -26,6 +29,11 @@ import androidx.core.app.NavUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,6 +48,7 @@ import team_10.example.coen390_ezcurtains.Models.Schedule;
 
 public class ScheduleActivity extends AppCompatActivity {
     protected FloatingActionButton btn_add_schedule;
+    protected TextView sensorValue;
     protected ListView listView;
     protected List<Schedule> scheduleList;
     protected ListAdapter adapter;
@@ -55,7 +64,30 @@ public class ScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Schedule");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         btn_add_schedule = findViewById(R.id.btn_add_schedule);
+        sensorValue = findViewById(R.id.sensor_value);
         listView = findViewById(R.id.list_schedule);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("lightSensor");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int value = dataSnapshot.getValue(Integer.class);
+                if(value <= 100)
+                    sensorValue.setText("High");
+                else if(value >= 800)
+                    sensorValue.setText("Low");
+                else
+                    sensorValue.setText("Medium");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Failed to read value.", error.toException());
+            }
+        });
 
         btn_add_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
