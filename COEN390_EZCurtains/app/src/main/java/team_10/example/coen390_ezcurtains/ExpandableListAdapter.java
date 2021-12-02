@@ -131,7 +131,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             btnOpenCloseDevice.setClickable(true);
                             dbHelper.insertSelectedChild(headerPosition, childPosition);
                         }
-                    }, 5000); // change value to adjust time
+                    }, 6000); // change value to adjust time
                 }
                 // CLOSE
                 else {
@@ -147,7 +147,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                             btnOpenCloseDevice.setClickable(true);
                             dbHelper.removeSelectedChild(headerPosition, childPosition);
                         }
-                    }, 5000); // change value to adjust time
+                    }, 6000); // change value to adjust time
                 }
             }
         });

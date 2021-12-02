@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 int value = dataSnapshot.getValue(Integer.class);
                 DatabaseHelper dbHelper = new DatabaseHelper((getBaseContext()));
-                if (value < 100 && !dbHelper.checkSelectedChild(0,0)) {
+                if (value < 200 && !dbHelper.checkSelectedChild(0,0)) {
                     expandableListView.collapseGroup(0);
                     motor.setValue(1);
                     // run motor for 6 seconds
@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
                     }, 6000); // change value to adjust time
 
                 }
-                else if (value > 800 && dbHelper.checkSelectedChild(0,0)) {
+                else if (value >= 700 && dbHelper.checkSelectedChild(0,0)) {
                     motor.setValue(-1);
                     expandableListView.collapseGroup(0);
                     // run motor for 6 seconds

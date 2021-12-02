@@ -2583,6 +2583,7 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout toolbar_layout
 menu context_menu
+menu device_room_context_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
